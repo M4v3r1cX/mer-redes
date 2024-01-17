@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Eliminar Actividad</h1>
+<div mat-dialog-content>
+  Desea eliminar la actividad {{ actividad }}?
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close class="btn btn-dark" (click)="cerrarDialogo()"><i class="bi bi-x"></i> Cancelar</button>
+  <button mat-button mat-dialog-close cdkFocusInitial class="btn btn-danger" (click)="doDelete()"><i class="bi bi-trash"></i> Eliminar</button>
+</div>

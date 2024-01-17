@@ -1,0 +1,61 @@
+<div class="container">
+  <div *ngIf="loadingVisible">
+    <mat-spinner class="center"></mat-spinner>
+  </div>
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <h1><b>{{ titulo }}</b></h1>
+        </div>
+    </div>
+    <br />
+    <form class="custom-form mx-auto" method="post">
+          
+          <div class="row">
+            <div class="col-md-6">
+              <label for="txtOa" name="txtOaLabel" class="float-end">
+                Objetivo de Aprendizaje al que pertenece<br />
+                <div *ngIf="listaFiltrada == true" style="color:gray;">(Lista filtrada. Utilice el buscador<br /> para encontrar todos los OAs<br /> registrados.)</div>
+              </label>
+            </div>
+            <div class="col-md-6">
+              <input type="text" name="search" id="search" [ngModel]="searchText" (ngModelChange)="searchKey($event)" placeholder="Filtrar lista de OAs..." ngModel>
+              <div class="col-md-6">
+                <mat-radio-group
+                  aria-labelledby="example-radio-group-label"
+                  class="example-radio-group" >
+                  <div class="row" *ngFor="let o of oasFiltrados; let i = index">
+                    <mat-radio-button class="example-radio-button" [value]="o.id" [checked]="oaSeleccionado === o.id" (change)="radioChange($event)" *ngIf="i < 5">
+                      {{o.codigo}} -  {{o.descripcion}}
+                    </mat-radio-button>
+                  </div>
+                </mat-radio-group>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label for="txtDescripcion" name="txtDescripcionLabel" class="float-end">
+                    Descripción
+                </label>
+                </div>
+                <div class="col-md-6">
+                <textarea
+                [(ngModel)]="dto.descripcion"
+                name="txtDescripcion"
+                placeholder=""
+                required="required" class="col-md-6"
+                ></textarea>
+                </div>
+            </div>
+          </div>
+        <div class="row">
+          <div class="col-md-6">
+            <button class="btn btn-dark float-end" type="submit" (click)="guardarTm()"><i class="bi bi-save"></i> Guardar OA</button>
+          </div>
+          <div class="col-md-6">
+            <button mat-button mat-dialog-close class="btn btn-danger" type="submit"><i class="bi bi-x"></i> Cancelar</button>
+          </div>
+        </div>
+        </form>
+        <br />
+</div>

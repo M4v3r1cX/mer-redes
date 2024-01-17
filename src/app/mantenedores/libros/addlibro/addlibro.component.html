@@ -1,0 +1,53 @@
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+          <h1 mat-dialog-title>Agregar Libro</h1>
+        </div>
+    </div>
+    <br />
+    <mat-dialog-content>
+    <form class="custom-form mx-auto" method="post">
+      <div class="row">
+        <div class="col-md-2 offset-md-3">
+          <label for="nombre" name="nombreLabel" class="float-end">
+            Nombre
+          </label>
+        </div>
+        <div class="col-md-4">
+          <input
+          type="text"
+          [(ngModel)]="nombre"
+          name="nombre"
+          placeholder="Nombre"
+          required="required"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 offset-md-3">
+          <label for="descripcion" name="descripcionLabel" class="float-end">
+            Descripción
+          </label>
+        </div>
+        <div class="col-md-4">
+          <input
+          type="descripcion"
+          [(ngModel)]="descripcion"
+          name="descripcion"
+          placeholder="Descripcion"
+          required="required"
+        />
+        </div>
+      </div><br />
+      <div class="row">
+        <div class="col-md-6">
+          <button class="btn btn-dark float-end" type="submit" (click)="guardarLibro()"><i class="bi bi-save"></i> Guardar Libro</button>
+        </div>
+        <div class="col-md-6">
+          <button mat-button mat-dialog-close class="btn btn-danger" type="submit"><i class="bi bi-x"></i> Cancelar</button>
+        </div>
+      </div>
+      </form>
+    </mat-dialog-content>
+</div>

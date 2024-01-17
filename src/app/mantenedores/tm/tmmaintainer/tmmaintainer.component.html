@@ -1,0 +1,77 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" rel="stylesheet">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container-fluid">
+    <a class="navbar-brand" href="#"><b><i class="bi bi-bezier2"></i> REAM</b></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+            <a class="nav-link" href="#/oas">Objetivos de Aprendizaje</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="#/tms">Tareas Matemáticas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#/actividades">Actividades</a>
+        </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item" style="color: white;align-items: center; display: flex;">
+                <i class="bi bi-person-fill"></i> {{ usersService.getNombreUsuario() }}
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#/logout"><i class="bi bi-box-arrow-in-left"></i> Cerrar Sesión</a>
+            </li>
+        </ul>
+    </div>
+    </div>
+</nav>
+<div class="container">
+    <div *ngIf="loadingVisible">
+        <mat-spinner class="center"></mat-spinner>
+      </div>
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <h1><b>Tareas Matemáticas</b></h1>
+        </div>
+        <div class="col-md-6">
+            <button (click)="openDialogAddTm()" class="btn btn-dark float-end"><i class="bi bi-plus"></i> Agregar TM</button>
+        </div>
+    </div>
+    <br />
+    <div class="row" *ngIf="tms != undefined">
+        <div class="col-md-12">
+            <table class="table" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th class="col-md-1" scope="col">TM</th>
+                        <th class="col-md-2" scope="col">Descripcion</th>
+                        <th class="col-md-4" scope="col">OA Padre - Descripcion OA Hijo</th>
+                        <th class="col-md-1" scope="col">Nivel</th>
+                        <th class="col-md-2" scope="col">Red</th>
+                        <th scope="col-md-2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tm of tms">
+                        <th scope="row" class="col-md-1">TM-{{tm.id}}</th>
+                        <td>{{ tm.descripcion }}</td>
+                        <td>{{ tm.codigoOa }}  -  {{ tm.descripcionOa }}</td>
+                        <td><p *ngFor="let nivel of tm.niveles"><i class="bi bi-dot"></i> {{nivel}}</p></td>
+                        <td><p *ngFor="let red of tm.redes"><i class="bi bi-dot"></i> {{red}}</p></td>
+                        <td><button class="btn btn-dark" mat-raised-button (click)="openDialogEditTm(tm.id);"><i class="bi bi-pencil"></i> Ver/Editar</button></td>
+                        <td><button class="btn btn-dark" mat-raised-button (click)="openDialogConfirmDelete(tm.id);"><i class="bi bi-trash"></i> Eliminar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row" *ngIf="tms == undefined">
+        <div class="d-flex justify-content-center">
+            No existen Tareas Matemáticas registradas en el sistema.
+          </div>
+    </div>
+</div>

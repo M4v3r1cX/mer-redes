@@ -1,0 +1,38 @@
+<div class="container">
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <h1><b>Hijos de Objetivo de Aprendizaje {{ titulooa }}</b></h1>
+        </div>
+    </div>
+    <br />
+    <div style="padding: 10px">
+        <div class="row" *ngIf="hijos.length > 0">
+            <div class="col-md-12">
+                <table class="table" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th scope="col">OA</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Red</th>
+                            <th scope="col">Nivel</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let oa of hijos">
+                            <th scope="row">{{ titulooa }}</th>
+                            <td>{{oa.descripcion}} <i class="bi bi-star-fill" *ngIf="oa.prioridad == true"></i></td>
+                            <td><p *ngFor="let red of oa.redes"><i class="bi bi-dot"></i> {{red}}</p></td>
+                            <td><p *ngFor="let nivel of oa.niveles"><i class="bi bi-dot"></i> {{nivel}}</p></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row" *ngIf="hijos.length == 0">
+            <div class="col-md-12">
+                <p class="d-flex justify-content-center">Objetivo de Aprendizaje no tiene hijos registrados.</p>
+            </div>
+        </div>
+    </div>
+</div>
