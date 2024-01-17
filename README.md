@@ -1,5 +1,5 @@
-# MER Frontend (Balthazar)
-FrontEnd para el proyecto MER de Peter Salfate
+# MER Redes (Gaspar)
+Redes para el proyecto MER de Peter Salfate
 
 ## Building
 * Instalar node.js
