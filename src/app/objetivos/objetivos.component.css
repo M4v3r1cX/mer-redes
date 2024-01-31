@@ -85,6 +85,7 @@ body {
   background-image: url("../../assets/bg.png");
   background-size: 100%;
   background-size: cover;
+  padding: 10px;
 }
 
 .welcome {
@@ -177,4 +178,35 @@ body {
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
+}
+
+.headerObjetivos {
+  border: 2px solid #005A6C;
+  border-radius: 20px;
+  background-color: #F2F2F2;
+  color: #005A6C;
+  font-family: 'Nunito Sans';
+  padding: 10px;
+  text-align: center;
+}
+
+.cardOa {
+  margin-top: 10px;
+  border: 2px solid #FFF;
+  border-radius: 15px 15px 0px 0px;
+  background-color: #F2F2F2;
+  font-family: 'Nunito Sans';
+  padding: 10px;
+  height: 100px;
+  transition: 0.5s;
+  overflow-y: hidden;
+}
+
+.cardOaname {
+  border: 2px solid #005A6C;
+  background-color:#005A6C;
+  border-radius: 0px 0px 15px 15px;
+  font-family: 'Nunito Sans';
+  padding: 10px;
+  color: #8CB5BD;
 }

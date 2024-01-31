@@ -21,7 +21,7 @@
 </div>
 <div class="row subheader">
   <div class="col-md-6">
-    <b><i class="bi bi-list colprin"></i> Redes Evolutivas</b>
+    <b><i class="bi bi-list colprin" (click)="openNav()"></i> Redes Evolutivas</b>
   </div>
   <div class="col-md-6 float-end align-middle">
     <i class="bi bi-gear-fill float-end iconsize align-middle"></i>
@@ -57,4 +57,13 @@
       </div>
     </div>
   </div>
+</div>
+<div id="mySidenav" class="sidenav" [style.width]="sidenavwidth + 'px'">
+  <a href="#">Números</a>
+  <a href="#">Campo Aditivo</a>
+  <a href="#">Campo Multiplicativo</a>
+  <a href="#">Patrones y Álgebra</a>
+  <a href="#">Medición</a>
+  <a href="#">Geometría</a>
+  <a href="#">Datos y Probabilidades</a>
 </div>
