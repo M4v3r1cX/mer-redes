@@ -1,0 +1,228 @@
+body {
+    background-color: black;
+  }
+  
+  .n {
+    padding-top: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 25px;
+    background-color: #F2F2F2;
+  }
+  
+  .subheader {
+    padding-top: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 5px;
+    background-color: #E6E6E6;
+    font-family: 'Nunito';
+    color: #999999;
+    font-size: 18px;
+  }
+  
+  .form-rounded {
+    border-radius: 1rem;
+    }
+  
+  .b {
+    font-family: 'Nunito Sans';
+  }
+  
+  .logo {
+    color: #005A6C;
+    font-family: 'Nunito Sans';
+    font-size: 24px;
+    font-weight: 1000;
+    letter-spacing: 5px;
+  }
+  
+  .btn-mer {
+    font-family: 'Nunito Sans';
+    text-decoration: none;
+    color: white;
+    background-color: #005A6C;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-top:10px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+  }
+  
+  .btn-mer-blanco {
+    font-family: 'Nunito Sans';
+    text-decoration: none;
+    color: #999999;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-top:10px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+  }
+  
+  .txtlogo {
+    text-decoration: none;
+    color: #005A6C;
+    font-family: 'Nunito Sans';
+    font-size: 24px;
+    font-weight: 1000;
+    letter-spacing: 5px;
+    padding-left: 10px;
+    padding-top:10px;
+  }
+  
+  .colprin {
+    color: #005A6C;
+  }
+  
+  .iconsize {
+    font-size: 30px;
+  }
+  
+  .main {
+    width: 100%;
+    min-height: 100vh;
+    background-image: url("../../assets/bg.png");
+    background-size: 100%;
+    background-size: cover;
+  }
+  
+  .welcome {
+    background-color: #F2F2F2;
+    height: 55vh;
+    border-radius: 1rem;
+    position: absolute;
+    top: 20%;
+  }
+  
+  .leadin {
+    color: #005A6C;
+    font-family: 'Nunito Sans';
+    margin-left: 10%;
+    margin-top: 10%;
+  }
+  
+  .welcometxt {
+    color: #005A6C;
+    font-family: 'Nunito Sans';
+    margin-left: 10%;
+    margin-top: 20px;
+    font-size: 55px;
+    line-height: 54px;
+    font-weight: 900 !important;
+  }
+  
+  .textotxt {
+    margin-top: 30px;
+    margin-left: 10%;
+    font-family: 'Nunito';
+    color: #999999;
+    font-size: 18px;
+  }
+  
+  .masinfobtn {
+    margin-top: 30px;
+    margin-left: 10%;
+    font-family: 'Nunito';
+    color: #005A6C;
+    border: 2px solid #005A6C;
+    border-radius: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 50px;
+    padding-right: 20px;
+  }
+  
+  .masinfo {
+    text-decoration: none;
+    color: #005A6C;
+    font-size: 18px;
+  }
+  
+  .sidenav {
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    margin-top: 150px;
+    top: 0;
+    left: 0;
+    background-color: #005A6C;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .sidenav a {
+    padding: 8px 8px 8px 65px;
+    text-decoration: none;
+    font-size: 25px;
+    font-family: 'Nunito Sans';
+    color: #8CB5BD;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+  #zonamapa {
+    width: 100%;
+    min-height: 100vh;
+    background-image: url("../../assets/Recurso2.svg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-size: cover;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .cuadrito1 {
+    background-color: red;
+    padding: 20px;
+    text-align: center;
+    margin: 10px solid black;
+    height: 100px;
+    width: 100px;
+  }
+
+  .cuadrito2 {
+    background-color: blue;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin: 10px solid black;
+    height: 100px;
+    width: 100px;
+  }
+
+  .blanco_anterior {
+    background-color: white;
+    height: 120px;
+    width: 250px;
+    padding: 20px;
+    text-align: center;
+    border: 2px dashed blue;
+  }
+
+  .verde {
+    background-color: #c4e0b2;
+    height: 300px;
+    width: 250px;
+    padding: 20px;
+    text-align: center;
+    border: 2px solid black;
+  }
