@@ -14,7 +14,7 @@ const appRoutes = [
     { path: "register", component: RegisterComponent},
     { path: "objetivos/:id", component: ObjetivosComponent },
     { path: "tms", component: TmmaintainerComponent, canActivate: [AuthGuard] },        // Respaldo pa que no se me olvide como se hace la wea de que pida el login
-    { path: "mapas", component: MapasComponent },
+    { path: "mapas/:id", component: MapasComponent },
     { path: "logout", component: LogoutComponent }
 ];
 
