@@ -10,7 +10,7 @@ export class MapasService {
 
   constructor(private http: HttpClient) { }
 
-  getOasByRed(red: number) {
+  getOasByRed(red?: string) {
     return this.http.get(this.REST_URL + "mapas/getOasByRed?id=" + red);
   }
 }
