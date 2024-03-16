@@ -4,6 +4,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { LoginComponent } from '../mantenedores/usuarios/login/login.component';
 import { ActivatedRoute } from '@angular/router';
+import { MapasService } from '../services/mapas.service';
+import { OAMapaDTO } from '../models/OAMapaDTO';
 
 @Component({
   selector: 'app-objetivos',
@@ -19,19 +21,26 @@ export class ObjetivosComponent {
   nombreSeccionActiva: string = "";
   id: string | null = "";
   cardOaHeight = 100;
+  idRed: string | null ="";
+  oasMapa1: OAMapaDTO[] = [];
+  oasMapa2: OAMapaDTO[] = [];
+  oasMapa3: OAMapaDTO[] = [];
+  oasMapa4: OAMapaDTO[] = [];
+  oasMapa5: OAMapaDTO[] = [];
+  oasMapa6: OAMapaDTO[] = [];
+  showLoading: boolean = true;
   
-  constructor(public usersService: UsersService, public dialog: MatDialog, private route: ActivatedRoute) {
+  constructor(public usersService: UsersService, public dialog: MatDialog, private route: ActivatedRoute, public mapaService: MapasService) {
     console.log(usersService.isLoggedIn());
   }
 
   ngOnInit() {
-    this.route.queryParams
-      .subscribe(params => {
-        console.log(params);
-        this.id = params['id'];
-        console.log(this.id);
-      }
-    );
+    this.idRed = this.route.snapshot.paramMap.get('id');
+    if (this.idRed != null) {
+      this.mapaService.getOasByRed(this.idRed).subscribe((data:any)=>{
+        this.agregarCuadros(data);
+      });
+    }
 
     this.nombreSeccionActiva = this.id + '';
   }
@@ -76,6 +85,43 @@ export class ObjetivosComponent {
       this.cardOaHeight = 100;
       this.cardExpanded = false;
     }
-    
+  }
+
+  agregarCuadros(data: any) {
+    console.log(data);
+    let height = 0;
+    for (let d of data) {
+      let oa: OAMapaDTO = new OAMapaDTO();
+      let desc:string = d.descripcion;
+      /*if (desc.length >  200) {
+        desc = desc.substring(0,200);
+        desc = desc + "...";
+      }*/
+      oa.descripcion = desc;
+      oa.id = d.id;
+      oa.nombre = d.codigo;
+      oa.height = height += 100;
+      switch (d.idNivel) {
+        case 1:
+          this.oasMapa1.push(oa);
+          break;
+        case 2:
+          this.oasMapa2.push(oa);
+          break;
+        case 3:
+          this.oasMapa3.push(oa);
+          break;
+        case 4:
+          this.oasMapa4.push(oa);
+          break;
+        case 5:
+          this.oasMapa5.push(oa);
+          break;
+        case 6:
+          this.oasMapa6.push(oa);
+          break;
+      }
+    }
+    this.showLoading = false;
   }
 }

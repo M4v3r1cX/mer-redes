@@ -28,22 +28,58 @@
     <i class="bi bi-basket float-end iconsize align-middle"></i> 
   </div>
 </div>
+<div *ngIf="showLoading" id="loading"><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  <div class="lds-ring"><div></div><div></div><div></div><div></div></div><br />
+  Cargando...
+</div>
 <div id="zonamapa">
   <div class="row">
     <div class="col-md-1 justify-content-md-end">
-      <div class="blanco_anterior" style="margin-top: 70px;margin-left: 180px;">
-        <b>OA-9</b><br>
-        Demostrar que comprenden la adición de números del 0 al 20
+      <div *ngFor="let oa1 of oasMapa1">
+        <div class="verde" style="margin-top: 140px;margin-left: 800px;">
+          <b>{{oa1.nombre}}</b><br>
+          {{oa1.descripcion}}
+        </div>
       </div>
     </div>
-    <div class="col-md-1">
-      <div class="verde" style="margin-top: 110px;margin-left: 330px;">
-        <p>
-          <b>OA 11</b><br>
-            Demostrar que comprende la multiplicación en el ámbito de las tablas del 2, 5 y 10:<br>
-            - usando representaciones concretas y pictóricas<br>
-            - expresando una multiplicación como una adición de sumandos iguales
-        </p>
+    <div class="col-md-1 justify-content-md-end">
+      <div *ngFor="let oa2 of oasMapa2">
+        <div class="verde" style="margin-top: 140px;margin-left: 1350px;">
+          <b>{{oa2.nombre}}</b><br>
+          {{oa2.descripcion}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1 justify-content-md-end">
+      <div *ngFor="let oa3 of oasMapa3">
+        <div class="verde" style="margin-top: 140px;margin-left: 2200px;">
+          <b>{{oa3.nombre}}</b><br>
+          {{oa3.descripcion}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1 justify-content-md-end">
+      <div *ngFor="let oa4 of oasMapa4">
+        <div class="verde" style="margin-top: 140px;margin-left: 3000px;">
+          <b>{{oa4.nombre}}</b><br>
+          {{oa4.descripcion}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1 justify-content-md-end">
+      <div *ngFor="let oa5 of oasMapa5">
+        <div class="verde" style="margin-top: 140px;margin-left: 3800px;">
+          <b>{{oa5.nombre}}</b><br>
+          {{oa5.descripcion}}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1 justify-content-md-end">
+      <div *ngFor="let oa6 of oasMapa6">
+        <div class="verde" style="margin-top: 140px;margin-left: 4000px;">
+          <b>{{oa6.nombre}}</b><br>
+          {{oa6.descripcion}}
+        </div>
       </div>
     </div>
     <!--<div class="col-md-1">
@@ -54,10 +90,10 @@
 </div>
 <div id="mySidenav" class="sidenav" [style.width]="sidenavwidth + 'px'">
   <a href="#/objetivos/1">Números</a>
-  <a href="#/objetivos/1">Campo Aditivo</a>
-  <a href="#/objetivos/1">Campo Multiplicativo</a>
-  <a href="#/objetivos/1">Patrones y Álgebra</a>
-  <a href="#/objetivos/1">Medición</a>
-  <a href="#/objetivos/1">Geometría</a>
-  <a href="#/objetivos/1">Datos y Probabilidades</a>
+  <a href="#/objetivos/2">Campo Aditivo</a>
+  <a href="#/objetivos/3">Campo Multiplicativo</a>
+  <a href="#/objetivos/4">Patrones y Álgebra</a>
+  <a href="#/objetivos/5">Medición</a>
+  <a href="#/objetivos/6">Geometría</a>
+  <a href="#/objetivos/7">Datos y Probabilidades</a>
 </div>

@@ -21,6 +21,7 @@ export class MapasComponent implements AfterViewInit {
   oasMapa4: OAMapaDTO[] = [];
   oasMapa5: OAMapaDTO[] = [];
   oasMapa6: OAMapaDTO[] = [];
+  showLoading: boolean = true;
 
   constructor(private route: ActivatedRoute, public mapaService: MapasService) {
 
@@ -45,7 +46,13 @@ export class MapasComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    panzoom(document.querySelector('#zonamapa')!);
+    panzoom(document.querySelector('#zonamapa')!,
+    {
+      smoothScroll: false,
+      initialX: 0,
+      initialY: 0,
+      initialZoom: 0.24
+    });
   }
 
   openNav() {
@@ -62,12 +69,18 @@ export class MapasComponent implements AfterViewInit {
   }
 
   agregarCuadros(data: any) {
+    console.log(data);
     let height = 0;
     for (let d of data) {
       let oa: OAMapaDTO = new OAMapaDTO();
-      oa.descripcion = d.descripcion;
+      let desc:string = d.descripcion;
+      /*if (desc.length >  200) {
+        desc = desc.substring(0,200);
+        desc = desc + "...";
+      }*/
+      oa.descripcion = desc;
       oa.id = d.id;
-      oa.nombre = d.nombre;
+      oa.nombre = d.codigo;
       oa.height = height += 100;
       switch (d.idNivel) {
         case 1:
@@ -90,5 +103,6 @@ export class MapasComponent implements AfterViewInit {
           break;
       }
     }
+    this.showLoading = false;
   }
 }

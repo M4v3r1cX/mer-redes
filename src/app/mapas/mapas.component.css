@@ -180,14 +180,15 @@ body {
   }
 
   #zonamapa {
-    width: 100%;
-    min-height: 100vh;
+    width: 8000px;
+    height: 5500px;
     background-image: url("../../assets/Recurso2.svg");
     background-repeat: no-repeat;
-    background-size: 100%;
+    /*background-size: 100%;*/
     background-size: cover;
     overflow: hidden;
     padding: 0;
+    padding-top: 400px;
   }
 
   .cuadrito1 {
@@ -220,9 +221,55 @@ body {
 
   .verde {
     background-color: #c4e0b2;
-    height: 300px;
+    height: auto;
     width: 250px;
     padding: 20px;
-    text-align: center;
-    border: 2px solid black;
+    /*text-align: center;
+    /*border: 2px solid black;*/
   }
+
+  #loading {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #00000080;
+    color:white;
+    text-align: center;
+    vertical-align: center;
+  }
+
+  .lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #fff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #fff transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  

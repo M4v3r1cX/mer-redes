@@ -33,6 +33,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ApiInterceptorService } from './services/api-interceptor.service';
 import { MapasComponent } from './mapas/mapas.component';
+import { ObjetivosComponent } from './objetivos/objetivos.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { MapasComponent } from './mapas/mapas.component';
     AddtmComponent,
     DeletetmComponent,
     FilterPipe,
-    MapasComponent
+    MapasComponent,
+    ObjetivosComponent
   ],
   imports: [
     BrowserModule,

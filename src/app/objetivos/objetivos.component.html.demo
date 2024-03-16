@@ -34,84 +34,91 @@
       <div class="headerObjetivos">
         <b>1° BÁSICO</b>
       </div>
-      <div *ngFor="let oa1 of oasMapa1">
-        <div class="cardOa" [style.height]="cardOaHeight + 'px'">
-          {{oa1.descripcion}}
-        </div>
-        <div class="cardOaname">
-          <b>{{oa1.nombre}}</b>
-          <i class="bi bi-chevron-down" (click)="expandCard()"></i>
-        </div>
+      <div class="cardOa" [style.height]="cardOaHeight + 'px'">
+        Demostrar que comprende la multiplicación:
+
+        · Usando representaciones concretas y pictóricas
+        · Expresando una multiplicación como una adición de sumandos iguales
+        · Usando la distributividad como estrategia para construir las tablas del 2, del 5 y del 10
+        · Resolviendo problemas que involucren las tablas del 2, del 5 y del 10.
+      </div>
+      <div class="cardOaname">
+        <b>OA2</b>
+        <i class="bi bi-chevron-down" (click)="expandCard()"></i>
       </div>
     </div>
     <div class="col-md-2">
       <div class="headerObjetivos">
         <b>2° BÁSICO</b>
       </div>
-      <div *ngFor="let oa2 of oasMapa2">
-        <div class="cardOa" [style.height]="cardOaHeight + 'px'">
-          {{oa2.descripcion}}
-        </div>
-        <div class="cardOaname">
-          <b>{{oa2.nombre}}</b>
-          <i class="bi bi-chevron-down" (click)="expandCard()"></i>
-        </div>
-      </div>
+      <div class="cardOa">
+        Demostrar que comprenden la multiplicación
+    </div>
+    <div class="cardOaname">
+      <b>OA2</b>
+      <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="cardOa">
+      Demostrar que comprenden la multiplicación
+  </div>
+  <div class="cardOaname">
+    <b>OA2</b>
+    <i class="bi bi-chevron-down"></i>
+  </div>
     </div>
     <div class="col-md-2">
       <div class="headerObjetivos">
         <b>3° BÁSICO</b>
       </div>
-      <div *ngFor="let oa3 of oasMapa3">
-        <div class="cardOa" [style.height]="cardOaHeight + 'px'">
-          {{oa3.descripcion}}
-        </div>
-        <div class="cardOaname">
-          <b>{{oa3.nombre}}</b>
-          <i class="bi bi-chevron-down" (click)="expandCard()"></i>
-        </div>
-      </div>
+      <div class="cardOa">
+        Demostrar que comprenden la multiplicación
+    </div>
+    <div class="cardOaname">
+      <b>OA2</b>
+      <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="cardOa">
+      Demostrar que comprenden la multiplicación
+  </div>
+  <div class="cardOaname">
+    <b>OA2</b>
+    <i class="bi bi-chevron-down"></i>
+  </div>
+  <div class="cardOa">
+    Demostrar que comprenden la multiplicación
+  </div>
+  <div class="cardOaname">
+    <b>OA2</b>
+    <i class="bi bi-chevron-down"></i>
+  </div>
     </div>
     <div class="col-md-2">
       <div class="headerObjetivos">
         <b>4° BÁSICO</b>
       </div>
-      <div *ngFor="let oa4 of oasMapa4">
-        <div class="cardOa" [style.height]="cardOaHeight + 'px'">
-          {{oa4.descripcion}}
-        </div>
-        <div class="cardOaname">
-          <b>{{oa4.nombre}}</b>
-          <i class="bi bi-chevron-down" (click)="expandCard()"></i>
-        </div>
-      </div>
+      <div class="cardOa">
+        Demostrar que comprenden la multiplicación
+    </div>
+    <div class="cardOaname">
+      <b>OA2</b>
+      <i class="bi bi-chevron-down"></i>
+    </div>
+    <div class="cardOa">
+      Demostrar que comprenden la multiplicación
+  </div>
+  <div class="cardOaname">
+    <b>OA2</b>
+    <i class="bi bi-chevron-down"></i>
+  </div>
     </div>
     <div class="col-md-2">
       <div class="headerObjetivos">
         <b>5° BÁSICO</b>
       </div>
-      <div *ngFor="let oa5 of oasMapa5">
-        <div class="cardOa" [style.height]="cardOaHeight + 'px'">
-          {{oa5.descripcion}}
-        </div>
-        <div class="cardOaname">
-          <b>{{oa5.nombre}}</b>
-          <i class="bi bi-chevron-down" (click)="expandCard()"></i>
-        </div>
-      </div>
     </div>
     <div class="col-md-2">
       <div class="headerObjetivos">
         <b>6° BÁSICO</b>
-      </div>
-      <div *ngFor="let oa6 of oasMapa6">
-        <div class="cardOa" [style.height]="cardOaHeight + 'px'">
-          {{oa6.descripcion}}
-        </div>
-        <div class="cardOaname">
-          <b>{{oa6.nombre}}</b>
-          <i class="bi bi-chevron-down" (click)="expandCard()"></i>
-        </div>
       </div>
     </div>
   </div>
