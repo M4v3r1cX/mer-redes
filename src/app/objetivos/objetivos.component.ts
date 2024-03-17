@@ -36,13 +36,34 @@ export class ObjetivosComponent {
 
   ngOnInit() {
     this.idRed = this.route.snapshot.paramMap.get('id');
+    switch (this.idRed) {
+      case '1':
+        this.nombreSeccionActiva = 'Números';
+        break;
+      case '2':
+        this.nombreSeccionActiva = 'Campo Aditivo';
+        break;
+      case '3':
+        this.nombreSeccionActiva = 'Campo Multiplicativo';
+        break;
+      case '4':
+        this.nombreSeccionActiva = 'Patrones y Álgebra';
+        break;
+      case '5':
+        this.nombreSeccionActiva = 'Medición';
+        break;
+      case '6':
+        this.nombreSeccionActiva = 'Geometría';
+        break;
+      case '7':
+        this.nombreSeccionActiva = 'Datos y Probabilidades';
+        break;
+    }
     if (this.idRed != null) {
       this.mapaService.getOasByRed(this.idRed).subscribe((data:any)=>{
         this.agregarCuadros(data);
       });
     }
-
-    this.nombreSeccionActiva = this.id + '';
   }
 
   levantarLogin() {
@@ -60,8 +81,6 @@ export class ObjetivosComponent {
   }
 
   openNav() {
-    //let sidebar = document.getElementById("mySidenav");
-    //sidebar?.style['width'] = "":
     if (!this.sidebarAbierto) {
       this.sidenavwidth = 400;
       this.sidebarAbierto = true;
@@ -73,17 +92,40 @@ export class ObjetivosComponent {
   }
   
   closeNav() {
-    //document.getElementById("mySidenav").style.width = "0";
     this.sidenavwidth = 0;
   }
 
-  expandCard() {
-    if (!this.cardExpanded) {
-      this.cardOaHeight = 300;
-      this.cardExpanded = true;
+  expandCard(idx: number, lvl: number) {
+    switch (lvl){
+      case 1:
+        this.doExpand(this.oasMapa1, idx);
+        break;
+      case 2:
+        this.doExpand(this.oasMapa2, idx);
+        break;
+      case 3:
+        this.doExpand(this.oasMapa3, idx);
+        break;
+      case 4:
+        this.doExpand(this.oasMapa4, idx);
+        break;
+      case 5:
+        this.doExpand(this.oasMapa5, idx);
+        break;
+      case 6:
+        this.doExpand(this.oasMapa6, idx);
+        break;
+    }
+    
+  }
+
+  doExpand(collection: any, idx: number) {
+    if (!collection[idx].cardExpanded) {
+      collection[idx].cardHeight = 300;
+      collection[idx].cardExpanded = true;
     } else {
-      this.cardOaHeight = 100;
-      this.cardExpanded = false;
+      collection[idx].cardHeight = 100;
+      collection[idx].cardExpanded = false;
     }
   }
 
@@ -93,10 +135,6 @@ export class ObjetivosComponent {
     for (let d of data) {
       let oa: OAMapaDTO = new OAMapaDTO();
       let desc:string = d.descripcion;
-      /*if (desc.length >  200) {
-        desc = desc.substring(0,200);
-        desc = desc + "...";
-      }*/
       oa.descripcion = desc;
       oa.id = d.id;
       oa.nombre = d.codigo;

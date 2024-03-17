@@ -22,6 +22,7 @@ export class MapasComponent implements AfterViewInit {
   oasMapa5: OAMapaDTO[] = [];
   oasMapa6: OAMapaDTO[] = [];
   showLoading: boolean = true;
+  nombreSeccionActiva: string = "";
 
   constructor(private route: ActivatedRoute, public mapaService: MapasService) {
 
@@ -29,16 +30,32 @@ export class MapasComponent implements AfterViewInit {
 
   ngOnInit() {
     console.log('ngOnInit');
-    /*this.route.queryParams
-      .subscribe(params => {
-        console.log(params);
-        this.idRed = params['id'];
-        console.log(this.idRed);
-      }
-    );*/
     this.idRed = this.route.snapshot.paramMap.get('id');
+    switch (this.idRed) {
+      case '1':
+        this.nombreSeccionActiva = 'Números';
+        break;
+      case '2':
+        this.nombreSeccionActiva = 'Campo Aditivo';
+        break;
+      case '3':
+        this.nombreSeccionActiva = 'Campo Multiplicativo';
+        break;
+      case '4':
+        this.nombreSeccionActiva = 'Patrones y Álgebra';
+        break;
+      case '5':
+        this.nombreSeccionActiva = 'Medición';
+        break;
+      case '6':
+        this.nombreSeccionActiva = 'Geometría';
+        break;
+      case '7':
+        this.nombreSeccionActiva = 'Datos y Probabilidades';
+        break;
+    }
     if (this.idRed != null) {
-      this.mapaService.getOasByRed(this.idRed).subscribe((data:any)=>{
+      this.mapaService.getOasHijosByRed(this.idRed).subscribe((data:any)=>{
         this.agregarCuadros(data);
       });
     }
@@ -56,8 +73,6 @@ export class MapasComponent implements AfterViewInit {
   }
 
   openNav() {
-    //let sidebar = document.getElementById("mySidenav");
-    //sidebar?.style['width'] = "":
     if (!this.sidebarAbierto) {
       this.sidenavwidth = 400;
       this.sidebarAbierto = true;
@@ -74,10 +89,6 @@ export class MapasComponent implements AfterViewInit {
     for (let d of data) {
       let oa: OAMapaDTO = new OAMapaDTO();
       let desc:string = d.descripcion;
-      /*if (desc.length >  200) {
-        desc = desc.substring(0,200);
-        desc = desc + "...";
-      }*/
       oa.descripcion = desc;
       oa.id = d.id;
       oa.nombre = d.codigo;

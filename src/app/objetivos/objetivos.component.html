@@ -21,7 +21,7 @@
 </div>
 <div class="row subheader">
   <div class="col-md-6">
-    <b><i class="bi bi-list colprin" (click)="openNav()"></i> Patrones y Álgebra</b>
+    <b><i class="bi bi-list colprin" (click)="openNav()"></i> {{nombreSeccionActiva}}</b>
   </div>
   <div class="col-md-6 float-end align-middle">
     <i class="bi bi-gear-fill float-end iconsize align-middle"></i>
@@ -29,18 +29,23 @@
   </div>
 </div>
 <div class="main">
-  <div class="row">
+  <div *ngIf="showLoading" id="loading"><br /><br />
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div><br />
+    Cargando...
+  </div>
+  <div class="row" *ngIf="!showLoading">
     <div class="col-md-2">
       <div class="headerObjetivos">
         <b>1° BÁSICO</b>
       </div>
-      <div *ngFor="let oa1 of oasMapa1">
-        <div class="cardOa" [style.height]="cardOaHeight + 'px'">
+      <div *ngFor="let oa1 of oasMapa1; let i = index">
+        <div class="cardOa" [style.height]="oa1.cardHeight + 'px'">
           {{oa1.descripcion}}
         </div>
         <div class="cardOaname">
           <b>{{oa1.nombre}}</b>
-          <i class="bi bi-chevron-down" (click)="expandCard()"></i>
+          <i class="bi bi-chevron-down" (click)="expandCard(i, 1)"></i>
+          <a href="#/mapas/{{idRed}}"><i class="bi bi-pin-map-fill"></i> Ver en el Mapa</a>
         </div>
       </div>
     </div>
@@ -48,13 +53,14 @@
       <div class="headerObjetivos">
         <b>2° BÁSICO</b>
       </div>
-      <div *ngFor="let oa2 of oasMapa2">
-        <div class="cardOa" [style.height]="cardOaHeight + 'px'">
+      <div *ngFor="let oa2 of oasMapa2; let i = index">
+        <div class="cardOa" [style.height]="oa2.cardHeight + 'px'">
           {{oa2.descripcion}}
         </div>
         <div class="cardOaname">
           <b>{{oa2.nombre}}</b>
-          <i class="bi bi-chevron-down" (click)="expandCard()"></i>
+          <i class="bi bi-chevron-down" (click)="expandCard(i, 2)"></i>
+          <a href="#/mapas/{{idRed}}"><i class="bi bi-pin-map-fill"></i> Ver en el Mapa</a>
         </div>
       </div>
     </div>
@@ -62,13 +68,14 @@
       <div class="headerObjetivos">
         <b>3° BÁSICO</b>
       </div>
-      <div *ngFor="let oa3 of oasMapa3">
-        <div class="cardOa" [style.height]="cardOaHeight + 'px'">
+      <div *ngFor="let oa3 of oasMapa3; let i = index">
+        <div class="cardOa" [style.height]="oa3.cardHeight  + 'px'">
           {{oa3.descripcion}}
         </div>
         <div class="cardOaname">
           <b>{{oa3.nombre}}</b>
-          <i class="bi bi-chevron-down" (click)="expandCard()"></i>
+          <i class="bi bi-chevron-down" (click)="expandCard(i, 3)"></i>
+          <a href="#/mapas/{{idRed}}"><i class="bi bi-pin-map-fill"></i> Ver en el Mapa</a>
         </div>
       </div>
     </div>
@@ -76,13 +83,14 @@
       <div class="headerObjetivos">
         <b>4° BÁSICO</b>
       </div>
-      <div *ngFor="let oa4 of oasMapa4">
-        <div class="cardOa" [style.height]="cardOaHeight + 'px'">
+      <div *ngFor="let oa4 of oasMapa4; let i = index">
+        <div class="cardOa" [style.height]="oa4.cardHeight + 'px'">
           {{oa4.descripcion}}
         </div>
         <div class="cardOaname">
           <b>{{oa4.nombre}}</b>
-          <i class="bi bi-chevron-down" (click)="expandCard()"></i>
+          <i class="bi bi-chevron-down" (click)="expandCard(i, 4)"></i>
+          <a href="#/mapas/{{idRed}}"><i class="bi bi-pin-map-fill"></i> Ver en el Mapa</a>
         </div>
       </div>
     </div>
@@ -90,13 +98,14 @@
       <div class="headerObjetivos">
         <b>5° BÁSICO</b>
       </div>
-      <div *ngFor="let oa5 of oasMapa5">
-        <div class="cardOa" [style.height]="cardOaHeight + 'px'">
+      <div *ngFor="let oa5 of oasMapa5; let i = index">
+        <div class="cardOa" [style.height]="oa5.cardHeight + 'px'">
           {{oa5.descripcion}}
         </div>
         <div class="cardOaname">
           <b>{{oa5.nombre}}</b>
-          <i class="bi bi-chevron-down" (click)="expandCard()"></i>
+          <i class="bi bi-chevron-down" (click)="expandCard(i, 5)"></i>
+          <a href="#/mapas/{{idRed}}"><i class="bi bi-pin-map-fill"></i> Ver en el Mapa</a>
         </div>
       </div>
     </div>
@@ -104,13 +113,14 @@
       <div class="headerObjetivos">
         <b>6° BÁSICO</b>
       </div>
-      <div *ngFor="let oa6 of oasMapa6">
-        <div class="cardOa" [style.height]="cardOaHeight + 'px'">
+      <div *ngFor="let oa6 of oasMapa6; let i = index">
+        <div class="cardOa" [style.height]="oa6.cardHeight + 'px'">
           {{oa6.descripcion}}
         </div>
         <div class="cardOaname">
           <b>{{oa6.nombre}}</b>
-          <i class="bi bi-chevron-down" (click)="expandCard()"></i>
+          <i class="bi bi-chevron-down" (click)="expandCard(i, 6)"></i>
+          <a href="#/mapas/{{idRed}}"><i class="bi bi-pin-map-fill"></i> Ver en el Mapa</a>
         </div>
       </div>
     </div>

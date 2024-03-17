@@ -224,6 +224,7 @@ body {
     height: auto;
     width: 250px;
     padding: 20px;
+    border-radius: 15px 15px 15px 15px;
     /*text-align: center;
     /*border: 2px solid black;*/
   }
@@ -235,6 +236,7 @@ body {
     color:white;
     text-align: center;
     vertical-align: center;
+    border-radius: 15px 15px 15px 15px;
   }
 
   .lds-ring {

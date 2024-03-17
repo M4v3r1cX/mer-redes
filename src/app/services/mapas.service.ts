@@ -13,4 +13,8 @@ export class MapasService {
   getOasByRed(red?: string) {
     return this.http.get(this.REST_URL + "mapas/getOasByRed?id=" + red);
   }
+
+  getOasHijosByRed(red?: string) {
+    return this.http.get(this.REST_URL + "mapas/getOasHijosByRed?id=" + red);
+  }
 }

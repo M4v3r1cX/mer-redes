@@ -21,14 +21,14 @@
 </div>
 <div class="row subheader">
   <div class="col-md-6">
-    <b><i class="bi bi-list colprin" (click)="openNav()"></i> Redes Evolutivas</b>
+    <b><i class="bi bi-list colprin" (click)="openNav()"></i> {{nombreSeccionActiva}}</b>
   </div>
   <div class="col-md-6 float-end align-middle">
     <i class="bi bi-gear-fill float-end iconsize align-middle"></i>
     <i class="bi bi-basket float-end iconsize align-middle"></i> 
   </div>
 </div>
-<div *ngIf="showLoading" id="loading"><br /><br /><br /><br /><br /><br /><br /><br /><br />
+<div *ngIf="showLoading" id="loading"><br /><br /><br /><br /><br />
   <div class="lds-ring"><div></div><div></div><div></div><div></div></div><br />
   Cargando...
 </div>

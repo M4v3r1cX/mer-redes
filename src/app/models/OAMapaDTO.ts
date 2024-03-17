@@ -3,4 +3,6 @@ export class OAMapaDTO {
     nombre: string = "";
     descripcion: string = "";
     height: number = 0;
+    cardHeight: number = 100;
+    cardExpanded: boolean = false;
 }
