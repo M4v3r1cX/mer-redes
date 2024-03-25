@@ -1,5 +1,7 @@
 body {
   background-color: black;
+  overflow-y: hidden;
+  overflow-x: auto;
 }
 
 .n {
@@ -86,6 +88,7 @@ body {
   background-size: 100%;
   background-size: cover;
   padding: 10px;
+  overflow-y: hidden;
 }
 
 .welcome {
@@ -151,6 +154,7 @@ body {
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
+  border-radius: 0px 15px 15px 15px;
 }
 
 .sidenav a {
@@ -224,6 +228,29 @@ body {
   text-align: center;
   vertical-align: center;
   border-radius: 15px 15px 15px 15px;
+}
+
+.sideBarInfo {
+  height: 100%;
+  margin-top: 149px;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 30px;
+  background-color: #F2F2F2;
+  position: fixed;
+  z-index: 1;
+}
+
+.sideBarInfo h3 {
+  font-family: 'Nunito Sans';
+  color: #003D52;
+}
+
+#sideBarContentLoading {
+  text-align: center;
+  padding-top: 80px;
 }
 
 .lds-ring {
