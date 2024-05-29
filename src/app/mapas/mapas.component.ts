@@ -2,6 +2,7 @@ import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import panzoom from "panzoom";
 import { ActivatedRoute } from '@angular/router';
 import { MapasService } from '../services/mapas.service';
+import { OaService } from '../services/oa.service';
 import { OAMapaDTO } from '../models/OAMapaDTO';
 
 @Component({
@@ -15,16 +16,16 @@ export class MapasComponent implements AfterViewInit {
   sidenavwidth: number = 0;
   sidebarAbierto = false;
   idRed: string | null ="";
-  oasMapa1: OAMapaDTO[] = [];
-  oasMapa2: OAMapaDTO[] = [];
-  oasMapa3: OAMapaDTO[] = [];
-  oasMapa4: OAMapaDTO[] = [];
-  oasMapa5: OAMapaDTO[] = [];
-  oasMapa6: OAMapaDTO[] = [];
+  oasMapa: OAMapaDTO[] = [];
   showLoading: boolean = true;
   nombreSeccionActiva: string = "";
+  backgroundMapa: string = "";
+  x: string = "100";
+  y: string = "100";
+  xMapa: string[] = [];
+  yMapa: string[] = [];
 
-  constructor(private route: ActivatedRoute, public mapaService: MapasService) {
+  constructor(private route: ActivatedRoute, public mapaService: MapasService, public oaService: OaService) {
 
   }
 
@@ -34,24 +35,31 @@ export class MapasComponent implements AfterViewInit {
     switch (this.idRed) {
       case '1':
         this.nombreSeccionActiva = 'Números';
+        this.backgroundMapa = "assets/mapas/oa/numeros.svg";
         break;
       case '2':
         this.nombreSeccionActiva = 'Campo Aditivo';
+        this.backgroundMapa = "assets/mapas/oa/campo_aditivo.svg";
         break;
       case '3':
         this.nombreSeccionActiva = 'Campo Multiplicativo';
+        this.backgroundMapa = "assets/mapas/oa/campo_multiplicativo.svg"; // probar esto y que salga la wea en la posición que le dimos en la otra app
         break;
       case '4':
         this.nombreSeccionActiva = 'Patrones y Álgebra';
+        this.backgroundMapa = "assets/mapas/oa/algebra.svg";
         break;
       case '5':
         this.nombreSeccionActiva = 'Medición';
+        this.backgroundMapa = "assets/mapas/oa/medicion.svg";
         break;
       case '6':
         this.nombreSeccionActiva = 'Geometría';
+        this.backgroundMapa = "assets/mapas/oa/geometria.svg";
         break;
       case '7':
         this.nombreSeccionActiva = 'Datos y Probabilidades';
+        this.backgroundMapa = "assets/mapas/oa/probabilidades.svg";
         break;
     }
     if (this.idRed != null) {
@@ -85,7 +93,20 @@ export class MapasComponent implements AfterViewInit {
 
   agregarCuadros(data: any) {
     console.log(data);
-    let height = 0;
+    for (let d of data) {
+      let oa: OAMapaDTO = new OAMapaDTO();
+      let desc:string = d.descripcion;
+      oa.descripcion = desc;
+      oa.id = d.id;
+      oa.nombre = d.codigo;
+      oa.x = d.x;
+      oa.y = d .y;
+      oa.tienePosicionamiento = d.tienePosicionamiento;
+      this.xMapa.push(oa.x);
+      this.yMapa.push(oa.y);
+      this.oasMapa.push(oa);
+    }
+    /*let height = 0;
     for (let d of data) {
       let oa: OAMapaDTO = new OAMapaDTO();
       let desc:string = d.descripcion;
@@ -113,7 +134,7 @@ export class MapasComponent implements AfterViewInit {
           this.oasMapa6.push(oa);
           break;
       }
-    }
+    }*/
     this.showLoading = false;
   }
 }

@@ -36,5 +36,36 @@ import { OaDTO } from "../models/OaDTO";
       return this.http.get(this.REST_URL + "oa/getHijos?id=" + id);
     }
 
-    
+    getBackgroundMapa(id: string, tipo: string) {
+      let ret: string = "";
+
+      switch(id) {
+        case "1":
+          ret = "assets/mapas/" + tipo + "/numeros.svg";
+          break;
+        case "2":
+          ret = "assets/mapas/" + tipo + "/campo_aditivo.svg";
+          break;
+        case "3":
+          ret = "assets/mapas/" + tipo + "/campo_multiplicativo.svg";
+          break;
+        case "4":
+          ret = "assets/mapas/"+ tipo + "/algebra.svg";
+          break;
+        case "5":
+          ret = "assets/mapas/" + tipo + "/medicion.svg";
+          break;
+        case "6":
+          ret = "assets/mapas/" + tipo + "/geometria.svg";
+          break;
+        case "7":
+          ret = "assets/mapas/" + tipo + "/probabilidades.svg";
+          break;
+        default:
+          ret = "assets/Recurso2.svg";
+          break;
+      }
+
+      return ret;
+    }
   }

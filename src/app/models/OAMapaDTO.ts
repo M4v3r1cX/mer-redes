@@ -5,4 +5,7 @@ export class OAMapaDTO {
     height: number = 0;
     cardHeight: number = 100;
     cardExpanded: boolean = false;
+    x: string = "";
+    y: string = "";
+    tienePosicionamiento: boolean = false;
 }
