@@ -289,3 +289,7 @@ body {
   }
 }
 
+.currentSelectedOaInfo {
+  font-family: 'Nunito Sans';
+  color: #005A6C;
+}
