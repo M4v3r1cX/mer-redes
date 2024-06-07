@@ -195,8 +195,11 @@ export class ObjetivosComponent {
         break;
     }
 
+    console.log('cargando hijos de id ' + id);
     this.oaService.getHijosOa(id + '').subscribe((data:any)=>{
+      console.log('hijos cargados');
       this.hijosOaSeleccionado = data;
+      console.log(this.hijosOaSeleccionado);
       this.sidebarContentLoading = false;
     });
   }

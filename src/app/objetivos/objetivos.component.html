@@ -45,7 +45,12 @@
       <div class="currentSelectedOaInfo">Está en la RED evolutiva de Aprendizajes Matemáticos (REAM) del Campo Multiplicativo, este OA se ha desagregado en varios aspectos. 
         Seleccione uno de ellos para localizarlo en la RED:
       </div>
-
+      <div class="sideBarHijos">
+        <div class="sideBarHijo" *ngFor="let hijo of hijosOaSeleccionado; let i = index">
+          {{hijo.descripcion}}
+          <button class="btn btn-dark">Pa elante</button>
+        </div>
+      </div>
       <button class="btn btn-mer-blanco" (click)="openInfo()">Cerrar</button>
     </div>
     </div>
