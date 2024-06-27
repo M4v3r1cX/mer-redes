@@ -17,4 +17,12 @@ export class MapasService {
   getOasHijosByRed(red?: string) {
     return this.http.get(this.REST_URL + "mapas/getOasHijosByRed?id=" + red);
   }
+
+  getOasHijos(id?: number) {
+    return this.http.get(this.REST_URL + "mapas/getOasHijosByOa?id=" + id);
+  }
+
+  getTareasMatematicasByIdHijo(id?: number) {
+    return this.http.get(this.REST_URL + "mapas/getTareasMatematicasByOaHijo?id=" + id);
+  }
 }

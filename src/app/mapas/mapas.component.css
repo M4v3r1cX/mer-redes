@@ -281,3 +281,27 @@ body {
     font-size: 30px;
     white-space: pre-line;
   }
+
+  .sideBarHijos {
+    height: 100%;
+    margin-top: 149px;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 30px;
+    background-color: #F2F2F2;
+    position: fixed;
+    z-index: 1;
+  }
+  
+  .sideBarHijos h3 {
+    font-family: 'Nunito Sans';
+    color: #003D52;
+  }
+  
+  #sideBarContentLoading {
+    text-align: center;
+    padding-top: 80px;
+  }
+  

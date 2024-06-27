@@ -2,7 +2,6 @@ import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import panzoom from "panzoom";
 import { ActivatedRoute } from '@angular/router';
 import { MapasService } from '../services/mapas.service';
-import { OaService } from '../services/oa.service';
 import { OAMapaDTO } from '../models/OAMapaDTO';
 
 @Component({
@@ -24,8 +23,13 @@ export class MapasComponent implements AfterViewInit {
   y: string = "100";
   xMapa: string[] = [];
   yMapa: string[] = [];
+  sideBarContentLoading: boolean = false;
+  sideBarHijosWidth: number = 0;
+  sideBarHijosAbierto: boolean = false;
+  sideBarActividades: boolean = false;
+  hijosOaSeleccionado: any[]= [];
 
-  constructor(private route: ActivatedRoute, public mapaService: MapasService, public oaService: OaService) {
+  constructor(private route: ActivatedRoute, public mapaService: MapasService) {
 
   }
 
@@ -106,35 +110,22 @@ export class MapasComponent implements AfterViewInit {
       this.yMapa.push(oa.y);
       this.oasMapa.push(oa);
     }
-    /*let height = 0;
-    for (let d of data) {
-      let oa: OAMapaDTO = new OAMapaDTO();
-      let desc:string = d.descripcion;
-      oa.descripcion = desc;
-      oa.id = d.id;
-      oa.nombre = d.codigo;
-      oa.height = height += 100;
-      switch (d.idNivel) {
-        case 1:
-          this.oasMapa1.push(oa);
-          break;
-        case 2:
-          this.oasMapa2.push(oa);
-          break;
-        case 3:
-          this.oasMapa3.push(oa);
-          break;
-        case 4:
-          this.oasMapa4.push(oa);
-          break;
-        case 5:
-          this.oasMapa5.push(oa);
-          break;
-        case 6:
-          this.oasMapa6.push(oa);
-          break;
-      }
-    }*/
     this.showLoading = false;
+  }
+
+  cargarHijos(pos: number) {
+    this.sideBarHijosAbierto = true;
+    this.sideBarHijosWidth = 400;
+    this.sideBarContentLoading = true;    
+    this.mapaService.getTareasMatematicasByIdHijo(this.oasMapa[pos].id).subscribe((data:any)=>{
+      this.hijosOaSeleccionado = data;
+      this.sideBarContentLoading = false;
+    });
+  }
+
+  cerrarSidebarHijjos() {
+    this.hijosOaSeleccionado = [];
+    this.sideBarHijosWidth = 0;
+    this.sideBarHijosAbierto = false;
   }
 }

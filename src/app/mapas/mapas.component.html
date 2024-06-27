@@ -33,62 +33,20 @@
   Cargando...
 </div>
 <div id="zonamapa" [style.background-image]="'url(' +backgroundMapa +')'">
-  <div *ngFor="let oa of oasMapa; let i = index" class="textoOa" [style.left]="xMapa[i] + 'px'" [style.top]="yMapa[i] + 'px'"><p>{{oa.descripcion}}</p></div>
-  <!--oasMapa[i].x + 'px'-->
-  <!--<div class="row">
-    <div class="col-md-1 justify-content-md-end">
-      <div *ngFor="let oa1 of oasMapa1">
-        <div class="verde" style="margin-top: 140px;margin-left: 800px;">
-          <b>{{oa1.nombre}}</b><br>
-          {{oa1.descripcion}}
-        </div>
-      </div>
+  <div *ngFor="let oa of oasMapa; let i = index" class="textoOa" [style.left]="xMapa[i] + 'px'" [style.top]="yMapa[i] + 'px'" (click)="cargarHijos(i)"><p>{{oa.descripcion}}</p></div>
+</div>
+<div *ngIf="sideBarHijosAbierto" class="sideBarHijos col-md-1" [style.width]="sideBarHijosWidth + 'px'">
+  <div id="sideBarContentLoading" *ngIf="sideBarContentLoading">
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div><br />
+    Cargando...
+  </div>
+  <div id="sideBarContent" *ngIf="!sideBarContentLoading">
+    <div class="sideBarHijo" *ngFor="let hijo of hijosOaSeleccionado; let i = index">
+      {{hijo.descripcion}}
+      <button class="btn btn-dark">Pa elante</button>
     </div>
-    <div class="col-md-1 justify-content-md-end">
-      <div *ngFor="let oa2 of oasMapa2">
-        <div class="verde" style="margin-top: 140px;margin-left: 1350px;">
-          <b>{{oa2.nombre}}</b><br>
-          {{oa2.descripcion}}
-        </div>
-      </div>
-    </div>
-    <div class="col-md-1 justify-content-md-end">
-      <div *ngFor="let oa3 of oasMapa3">
-        <div class="verde" style="margin-top: 140px;margin-left: 2200px;">
-          <b>{{oa3.nombre}}</b><br>
-          {{oa3.descripcion}}
-        </div>
-      </div>
-    </div>
-    <div class="col-md-1 justify-content-md-end">
-      <div *ngFor="let oa4 of oasMapa4">
-        <div class="verde" style="margin-top: 140px;margin-left: 3000px;">
-          <b>{{oa4.nombre}}</b><br>
-          {{oa4.descripcion}}
-        </div>
-      </div>
-    </div>
-    <div class="col-md-1 justify-content-md-end">
-      <div *ngFor="let oa5 of oasMapa5">
-        <div class="verde" style="margin-top: 140px;margin-left: 3800px;">
-          <b>{{oa5.nombre}}</b><br>
-          {{oa5.descripcion}}
-        </div>
-      </div>
-    </div>
-    <div class="col-md-1 justify-content-md-end">
-      <div *ngFor="let oa6 of oasMapa6">
-        <div class="verde" style="margin-top: 140px;margin-left: 4000px;">
-          <b>{{oa6.nombre}}</b><br>
-          {{oa6.descripcion}}
-        </div>
-      </div>
-    </div>
-    <div class="col-md-1">
-      <svg width="500" height="500"><line x1="0" y1="50" x2="150" y2="50" stroke="black"/></svg>
-    </div>
-   
-  </div>-->
+    <button class="btn btn-mer-blanco" (click)="cerrarSidebarHijjos()">Cerrar</button>
+  </div>
 </div>
 <div id="mySidenav" class="sidenav" [style.width]="sidenavwidth + 'px'">
   <a href="#/objetivos/1">Números</a>
