@@ -42,7 +42,7 @@
   </div>
   <div id="sideBarContent" *ngIf="!sideBarContentLoading">
     <h3 style="padding-left:10px;"><b>Tareas Matemáticas:</b></h3>
-    <div class="sideBarHijo" *ngFor="let hijo of hijosOaSeleccionado; let i = index"><!--(click)="mostrarActividades()"-->
+    <div class="sideBarHijo" *ngFor="let hijo of hijosOaSeleccionado; let i = index" (click)="mostrarActividades(hijo.id)">
       <div class="sideBarHijoDescripcion">{{hijo.descripcion}}</div>
       <div class="sideBarHijoBoton"><a href="#"><h3><b>></b></h3></a></div>
     </div>

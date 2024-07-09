@@ -25,4 +25,8 @@ export class MapasService {
   getTareasMatematicasByIdHijo(id?: number) {
     return this.http.get(this.REST_URL + "mapas/getTareasMatematicasByOaHijo?id=" + id);
   }
+
+  getActividadesByIdTareaMatematica(id?: number) {
+    return this.http.get(this.REST_URL + "mapas/getActividadesByTareaMatematica?id=" + id);
+  }
 }

@@ -128,4 +128,8 @@ export class MapasComponent implements AfterViewInit {
     this.sideBarHijosWidth = 0;
     this.sideBarHijosAbierto = false;
   }
+
+  mostrarActividades(id: number) {
+    
+  }
 }
