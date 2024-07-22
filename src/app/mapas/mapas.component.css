@@ -342,3 +342,31 @@ body {
     vertical-align: middle;
   }
   
+  .sideBarActividades {
+    height: 100%;
+    margin-top: 149px;
+    top: 0;
+    left: 400px;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 30px;
+    background-color: #F2F2F2;
+    position: fixed;
+    z-index: 1;
+    border-left: 2px solid #E6E6E6;
+  }
+
+  .sideBarActividades h3 {
+    font-family: 'Nunito Sans';
+    color: #003D52;
+  }
+
+  .sideBarHijoActividades {
+    background-color: black;
+    margin: 10px;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 10px;
+    height: 200px;
+    color: white;
+  }

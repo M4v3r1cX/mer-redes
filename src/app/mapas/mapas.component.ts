@@ -28,6 +28,9 @@ export class MapasComponent implements AfterViewInit {
   sideBarHijosAbierto: boolean = false;
   sideBarActividades: boolean = false;
   hijosOaSeleccionado: any[]= [];
+  sideBarActividadesWidth: number = 0;
+  sideBarActividadesAbierto: boolean = false;
+  actividades: any[] = [];
 
   constructor(private route: ActivatedRoute, public mapaService: MapasService) {
 
@@ -130,6 +133,19 @@ export class MapasComponent implements AfterViewInit {
   }
 
   mostrarActividades(id: number) {
-    
+    this.sideBarActividadesAbierto = true;
+    this.sideBarActividadesWidth = 400;
+    this.actividades = [];
+    //this.sideBarContentLoading = true;
+    this.mapaService.getActividadesByIdTareaMatematica(id).subscribe((data:any) => {
+      this.actividades = data;
+      //this.sideBarContentLoading = false;
+    });
+  }
+
+  cerrarSidebarActividades() {
+    this.actividades = [];
+    this.sideBarActividadesWidth = 0;
+    this.sideBarActividadesAbierto = false;
   }
 }

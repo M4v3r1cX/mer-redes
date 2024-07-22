@@ -41,12 +41,27 @@
     Cargando...
   </div>
   <div id="sideBarContent" *ngIf="!sideBarContentLoading">
-    <h3 style="padding-left:10px;"><b>Tareas Matemáticas:</b></h3>
+    <h3 style="padding-left:10px;"><b>Tareas Matemáticas</b></h3>
     <div class="sideBarHijo" *ngFor="let hijo of hijosOaSeleccionado; let i = index" (click)="mostrarActividades(hijo.id)">
       <div class="sideBarHijoDescripcion">{{hijo.descripcion}}</div>
-      <div class="sideBarHijoBoton"><a href="#"><h3><b>></b></h3></a></div>
+      <div class="sideBarHijoBoton"><a><h3><b>></b></h3></a></div>
     </div>
     <button class="btn btn-mer-blanco" (click)="cerrarSidebarHijjos()">Cerrar</button>
+  </div>
+</div>
+<div *ngIf="sideBarActividadesAbierto" class="sideBarActividades col-md-1" [style.width]="sideBarActividadesWidth + 'px'">
+  <div id="sideBarContentLoading" *ngIf="sideBarContentLoading">
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div><br />
+    Cargando...
+  </div>
+  <div id="sideBarContent">
+    <h3 style="padding-left:10px;"><b>Actividades</b></h3>
+    <div class="sideBarHijoActividades" *ngFor="let actividad of actividades; let i = index" [ngStyle]="{'background-image':' url(' + actividad?.imagenReferencia + ')'}">
+      <p style="bottom: 0;">{{actividad.ubicacionEnLibro}}</p>
+      <!--<div class="sideBarHijoDescripcionActividades">{{actividad.descripcionActividad}}</div>
+      <div class="sideBarHijoBotonActividades"><a href="#"><h3><b>></b></h3></a></div>-->
+    </div>
+    <button class="btn btn-mer-blanco" (click)="cerrarSidebarActividades()">Cerrar</button>
   </div>
 </div>
 <div id="mySidenav" class="sidenav" [style.width]="sidenavwidth + 'px'">
