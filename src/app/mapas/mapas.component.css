@@ -369,4 +369,11 @@ body {
     padding: 10px;
     height: 200px;
     color: white;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .shadow {
+    background-size: cover;
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.3);
   }

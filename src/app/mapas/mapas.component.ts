@@ -130,6 +130,8 @@ export class MapasComponent implements AfterViewInit {
     this.hijosOaSeleccionado = [];
     this.sideBarHijosWidth = 0;
     this.sideBarHijosAbierto = false;
+    this.sideBarActividadesAbierto = false;
+    this.sideBarActividadesWidth = 0;
   }
 
   mostrarActividades(id: number) {

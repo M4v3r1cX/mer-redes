@@ -56,8 +56,8 @@
   </div>
   <div id="sideBarContent">
     <h3 style="padding-left:10px;"><b>Actividades</b></h3>
-    <div class="sideBarHijoActividades" *ngFor="let actividad of actividades; let i = index" [ngStyle]="{'background-image':' url(' + actividad?.imagenReferencia + ')'}">
-      <p style="bottom: 0;">{{actividad.ubicacionEnLibro}}</p>
+    <div class="sideBarHijoActividades" *ngFor="let actividad of actividades; let i = index" [ngStyle]="{'background-image':' url(' + actividad?.imagenReferencia + ')', 'box-shadow':' inset 0 0 0 2000px rgba(0, 0, 0, 0.7)','background-size':'cover'}" [ngStyle]="">
+      {{actividad.ubicacionEnLibro}}
       <!--<div class="sideBarHijoDescripcionActividades">{{actividad.descripcionActividad}}</div>
       <div class="sideBarHijoBotonActividades"><a href="#"><h3><b>></b></h3></a></div>-->
     </div>
