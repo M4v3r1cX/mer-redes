@@ -14,7 +14,7 @@ export class MapasComponent implements AfterViewInit {
   loginLevantado = false;
   sidenavwidth: number = 0;
   sidebarAbierto = false;
-  idRed: string | null ="";
+  idRed: string | null = "";
   oasMapa: OAMapaDTO[] = [];
   showLoading: boolean = true;
   nombreSeccionActiva: string = "";

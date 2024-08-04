@@ -28,6 +28,7 @@
     <i class="bi bi-basket float-end iconsize align-middle"></i> 
   </div>
 </div>
+<div class="main">
 <div *ngIf="showLoading" id="loading"><br /><br /><br /><br /><br />
   <div class="lds-ring"><div></div><div></div><div></div><div></div></div><br />
   Cargando...
@@ -42,7 +43,7 @@
   </div>
   <div id="sideBarContent" *ngIf="!sideBarContentLoading">
     <h3 style="padding-left:10px;"><b>Tareas Matemáticas</b></h3>
-    <div class="sideBarHijo" *ngFor="let hijo of hijosOaSeleccionado; let i = index" (click)="mostrarActividades(hijo.id)">
+    <div class="sideBarHijo" *ngFor="let hijo of hijosOaSeleccionado; let i = index" (click)="mostrarActividades(hijo.id)" >
       <div class="sideBarHijoDescripcion">{{hijo.descripcion}}</div>
       <div class="sideBarHijoBoton"><a><h3><b>></b></h3></a></div>
     </div>
@@ -63,6 +64,7 @@
     </div>
     <button class="btn btn-mer-blanco" (click)="cerrarSidebarActividades()">Cerrar</button>
   </div>
+</div>
 </div>
 <div id="mySidenav" class="sidenav" [style.width]="sidenavwidth + 'px'">
   <a href="#/objetivos/1">Números</a>

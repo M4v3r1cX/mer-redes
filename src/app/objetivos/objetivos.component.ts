@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { LoginComponent } from '../mantenedores/usuarios/login/login.component';
 import { ActivatedRoute } from '@angular/router';
 import { MapasService } from '../services/mapas.service';
 import { OaService } from '../services/oa.service';
@@ -74,7 +73,7 @@ export class ObjetivosComponent {
     }
   }
 
-  levantarLogin() {
+  /*levantarLogin() {
     if (!this.loginLevantado) {
       this.loginLevantado = true;
       const dialogRef = this.dialog.open(LoginComponent, {
@@ -86,7 +85,7 @@ export class ObjetivosComponent {
         this.dialog.closeAll();
       });
     }
-  }
+  }*/
 
   openNav() {
     if (!this.sidebarAbierto) {
@@ -196,7 +195,7 @@ export class ObjetivosComponent {
     }
 
     console.log('cargando hijos de id ' + id);
-    this.oaService.getHijosOa(id + '').subscribe((data:any)=>{
+    this.mapaService.getOasHijos(id).subscribe((data:any)=>{
       console.log('hijos cargados');
       this.hijosOaSeleccionado = data;
       console.log(this.hijosOaSeleccionado);

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { LoginComponent } from '../mantenedores/usuarios/login/login.component';
 
 @Component({
   selector: 'app-index',
@@ -19,7 +18,7 @@ export class IndexComponent {
     console.log(usersService.isLoggedIn());
   }
 
-  levantarLogin() {
+  /*levantarLogin() {
     if (!this.loginLevantado) {
       this.loginLevantado = true;
       const dialogRef = this.dialog.open(LoginComponent, {
@@ -31,7 +30,7 @@ export class IndexComponent {
         this.dialog.closeAll();
       });
     }
-  }
+  }*/
 
   openNav() {
     //let sidebar = document.getElementById("mySidenav");

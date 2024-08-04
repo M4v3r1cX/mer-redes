@@ -47,8 +47,8 @@
       </div>
       <div class="sideBarHijos">
         <div class="sideBarHijo" *ngFor="let hijo of hijosOaSeleccionado; let i = index">
-          {{hijo.descripcion}}
-          <button class="btn btn-dark">Pa elante</button>
+          <div class="sideBarHijoDescripcion">{{hijo.descripcion}}</div>
+          <div class="sideBarHijoBoton"><a><h3><b>></b></h3></a></div>
         </div>
       </div>
       <button class="btn btn-mer-blanco" (click)="openInfo()">Cerrar</button>

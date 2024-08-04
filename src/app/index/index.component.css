@@ -1,98 +1,18 @@
-body {
-  background-color: black;
-}
-
-.n {
-  padding-top: 20px;
-  padding-left: 50px;
-  padding-right: 50px;
-  padding-bottom: 25px;
-  background-color: #F2F2F2;
-}
-
-.subheader {
-  padding-top: 10px;
-  padding-left: 50px;
-  padding-right: 50px;
-  padding-bottom: 5px;
-  background-color: #E6E6E6;
-  font-family: 'Nunito';
-  color: #999999;
-  font-size: 18px;
-}
-
-.form-rounded {
-  border-radius: 1rem;
-  }
-
-.b {
-  font-family: 'Nunito Sans';
-}
-
-.logo {
-  color: #005A6C;
-  font-family: 'Nunito Sans';
-  font-size: 24px;
-  font-weight: 1000;
-  letter-spacing: 5px;
-}
-
-.btn-mer {
-  font-family: 'Nunito Sans';
-  text-decoration: none;
-  color: white;
-  background-color: #005A6C;
-  padding-left: 35px;
-  padding-right: 35px;
-  padding-top:10px;
-  padding-bottom: 10px;
-  border-radius: 20px;
-}
-
-.btn-mer-blanco {
-  font-family: 'Nunito Sans';
-  text-decoration: none;
-  color: #999999;
-  padding-left: 35px;
-  padding-right: 35px;
-  padding-top:10px;
-  padding-bottom: 10px;
-  border-radius: 20px;
-}
-
-.txtlogo {
-  text-decoration: none;
-  color: #005A6C;
-  font-family: 'Nunito Sans';
-  font-size: 24px;
-  font-weight: 1000;
-  letter-spacing: 5px;
-  padding-left: 10px;
-  padding-top:10px;
-}
-
-.colprin {
-  color: #005A6C;
-}
-
-.iconsize {
-  font-size: 30px;
-}
-
 .main {
   width: 100%;
   min-height: 100vh;
   background-image: url("../../assets/bg.png");
   background-size: 100%;
   background-size: cover;
+  margin-top: 150px;
 }
 
 .welcome {
   background-color: #F2F2F2;
-  height: 55vh;
+  height: 590px;
   border-radius: 1rem;
   position: absolute;
-  top: 20%;
+  margin-top: 20px;
 }
 
 .leadin {

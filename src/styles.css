@@ -1,4 +1,96 @@
 /* You can add global styles to this file, and also import other style files */
+html, body { 
+    height: 100%; 
+    padding: 0; 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.n {
+    padding-top: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 25px;
+    background-color: #F2F2F2;
+    position: fixed;
+    min-width:100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+  }
+  
+  .subheader {
+    padding-top: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 5px;
+    background-color: #E6E6E6;
+    font-family: 'Nunito';
+    color: #999999;
+    font-size: 18px;
+    position: fixed;
+    min-width:100%;
+    top: 89px;
+    left: 0;
+    right: 0;
+    z-index: 999;
+  }
+  
+  .form-rounded {
+    border-radius: 1rem;
+    }
+  
+  .b {
+    font-family: 'Nunito Sans';
+  }
+  
+  .logo {
+    color: #005A6C;
+    font-family: 'Nunito Sans';
+    font-size: 24px;
+    font-weight: 1000;
+    letter-spacing: 5px;
+  }
+  
+  .btn-mer {
+    font-family: 'Nunito Sans';
+    text-decoration: none;
+    color: white;
+    background-color: #005A6C;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-top:10px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+  }
+  
+  .btn-mer-blanco {
+    font-family: 'Nunito Sans';
+    text-decoration: none;
+    color: #999999;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-top:10px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+  }
+  
+  .txtlogo {
+    text-decoration: none;
+    color: #005A6C;
+    font-family: 'Nunito Sans';
+    font-size: 24px;
+    font-weight: 1000;
+    letter-spacing: 5px;
+    padding-left: 10px;
+    padding-top:10px;
+  }
+  
+  .colprin {
+    color: #005A6C;
+  }
+  
+  .iconsize {
+    font-size: 30px;
+  }
