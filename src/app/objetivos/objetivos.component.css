@@ -159,6 +159,7 @@
   background-color: #F2F2F2;
   position: fixed;
   z-index: 1;
+  max-height: calc(100vh - 150px) !important;
 }
 
 .sideBarInfo h3 {
@@ -174,8 +175,9 @@
 #sideBarContent {
   font-family: 'Nunito Sans';
   color: #005A6C;
-  overflow-y: scroll;
+  /*overflow-y: scroll;*/
   transition: 0.5s;
+  max-height: calc(100vh - 120px) !important;
 }
 
 .lds-ring {

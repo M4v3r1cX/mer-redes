@@ -36,6 +36,8 @@ export class ObjetivosComponent {
   currentSelectedOa: string = "";
   currentSelectedOaInfo: string = "";
   currentSelectedLevel: string = "";
+  lastSelectedPos: number = -1;
+  lastSelectedLevel: number = -1;
   
   constructor(public usersService: UsersService, public dialog: MatDialog, private route: ActivatedRoute, public mapaService: MapasService, public oaService: OaService) {
     console.log(usersService.isLoggedIn());
@@ -146,6 +148,7 @@ export class ObjetivosComponent {
       oa.id = d.id;
       oa.nombre = d.codigo;
       oa.height = height += 100;
+      oa.seleccionado = false;
       switch (d.idNivel) {
         case 1:
           this.oasMapa1.push(oa);
@@ -171,25 +174,37 @@ export class ObjetivosComponent {
   }
 
   showOaInfo(id: number, posx: number, posy: number) {
+    this.checkIfClose();
+    this.lastSelectedPos = posy;
+    this.lastSelectedLevel = posx;
+    if (this.sideBarInfoAbierto) {
+      this.openInfo();
+    }
     this.openInfo();
     this.currentSelectedLevel = posx + "";
     switch (posx){
       case 1:
+        this.oasMapa1[posy].seleccionado = true;
         this.setInfo(this.oasMapa1, posy);
         break;
       case 2:
+        this.oasMapa2[posy].seleccionado = true;
         this.setInfo(this.oasMapa2, posy);
         break;
       case 3:
+        this.oasMapa3[posy].seleccionado = true;
         this.setInfo(this.oasMapa3, posy);
         break;
       case 4:
+        this.oasMapa4[posy].seleccionado = true;
         this.setInfo(this.oasMapa4, posy);
         break;
       case 5:
+        this.oasMapa5[posy].seleccionado = true;
         this.setInfo(this.oasMapa5, posy);
         break;
       case 6:
+        this.oasMapa6[posy].seleccionado = true;
         this.setInfo(this.oasMapa6, posy);
         break;
     }
@@ -215,6 +230,32 @@ export class ObjetivosComponent {
     } else {
       this.sideBarInfoWidth = 0;
       this.sideBarInfoAbierto = false;
+      // desmarcar la wea de la lista de weas
     }
   }
+
+  checkIfClose() {
+    if(this.lastSelectedPos != -1 && this.lastSelectedLevel != -1){ 
+      switch (this.lastSelectedLevel + "") {
+        case '1':
+          this.oasMapa1[this.lastSelectedPos].seleccionado = false;
+          break;
+        case '2':
+          this.oasMapa2[this.lastSelectedPos].seleccionado = false;
+          break;
+        case '3':
+          this.oasMapa3[this.lastSelectedPos].seleccionado = false;
+          break;
+        case '4':
+          this.oasMapa4[this.lastSelectedPos].seleccionado = false;
+          break;
+        case '5':
+          this.oasMapa5[this.lastSelectedPos].seleccionado = false;
+          break;
+        case '6':
+          this.oasMapa6[this.lastSelectedPos].seleccionado = false;
+          break;
+      }
+    }
+  } 
 }

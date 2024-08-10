@@ -37,22 +37,25 @@
     <div *ngIf="sideBarInfoAbierto" class="sideBarInfo col-md-1" [style.width]="sideBarInfoWidth + 'px'">
       <div id="sideBarContentLoading" *ngIf="sidebarContentLoading">
         <div class="lds-ring"><div></div><div></div><div></div><div></div></div><br />
-    Cargando...
-      </div>
-      <div id="sideBarContent" *ngIf="!sidebarContentLoading">
-      <div class=""><h3><b>Ha seleccionado el {{currentSelectedOa}} de {{currentSelectedLevel}}° básico</b></h3></div>
-      <div class="currentSelectedOaInfo"><b>{{currentSelectedOaInfo}}</b></div><br />
-      <div class="currentSelectedOaInfo">Está en la RED evolutiva de Aprendizajes Matemáticos (REAM) del Campo Multiplicativo, este OA se ha desagregado en varios aspectos. 
-        Seleccione uno de ellos para localizarlo en la RED:
-      </div>
-      <div class="sideBarHijos">
-        <div class="sideBarHijo" *ngFor="let hijo of hijosOaSeleccionado; let i = index">
-          <div class="sideBarHijoDescripcion">{{hijo.descripcion}}</div>
-          <div class="sideBarHijoBoton"><a><h3><b>></b></h3></a></div>
+          Cargando...
+        </div>
+        <div id="sideBarContent" *ngIf="!sidebarContentLoading">
+        <div class=""><h3><b>Ha seleccionado el {{currentSelectedOa}} de {{currentSelectedLevel}}° básico</b></h3></div>
+        <div class="currentSelectedOaInfo"><b>{{currentSelectedOaInfo}}</b></div><br />
+        <div class="currentSelectedOaInfo">Está en la RED evolutiva de Aprendizajes Matemáticos (REAM) del Campo Multiplicativo, este OA se ha desagregado en varios aspectos. 
+          Seleccione uno de ellos para localizarlo en la RED:
+        </div>
+        <div class="sideBarHijos">
+          <div class="sideBarHijo" *ngFor="let hijo of hijosOaSeleccionado; let i = index">
+            <div class="sideBarHijoDescripcion">{{hijo.descripcion}}</div>
+            <div class="sideBarHijoBoton"><a><h3><b>></b></h3></a></div>
+          </div>
+          <div class="sideBarHijo">
+            <div class="sideBarHijoDescripcion"><span> </span></div>
+            <div class="sideBarHijoBoton"><button class="btn" (click)="openInfo()">Cerrar</button></div>
+          </div>
         </div>
       </div>
-      <button class="btn btn-mer-blanco" (click)="openInfo()">Cerrar</button>
-    </div>
     </div>
     <div class="col-md-2">
       <div class="headerObjetivos">
@@ -60,7 +63,8 @@
       </div>
       <div *ngFor="let oa1 of oasMapa1; let i = index">
         <div class="cardOa" [style.height]="oa1.cardHeight + 'px'">
-          <input type="radio" (click)="showOaInfo(oa1.id, 1, i)">
+          <img *ngIf="!oa1.seleccionado" src="assets/icon1.png" height="20px" width="20px" (click)="showOaInfo(oa1.id, 1, i)"/>
+          <img *ngIf="oa1.seleccionado" src="assets/icon2.png" height="20px" width="20px" (click)="showOaInfo(oa1.id, 1, i)"/>
           {{oa1.descripcion}}
         </div>
         <div class="cardOaname">
@@ -76,7 +80,8 @@
       </div>
       <div *ngFor="let oa2 of oasMapa2; let i = index">
         <div class="cardOa" [style.height]="oa2.cardHeight + 'px'">
-          <input type="radio" (click)="showOaInfo(oa2.id, 2, i)">
+          <img *ngIf="!oa2.seleccionado" src="assets/icon1.png" height="20px" width="20px" (click)="showOaInfo(oa2.id, 2, i)"/>
+          <img *ngIf="oa2.seleccionado" src="assets/icon2.png" height="20px" width="20px" (click)="showOaInfo(oa2.id, 2, i)"/>
           {{oa2.descripcion}}
         </div>
         <div class="cardOaname">
@@ -92,7 +97,9 @@
       </div>
       <div *ngFor="let oa3 of oasMapa3; let i = index">
         <div class="cardOa" [style.height]="oa3.cardHeight  + 'px'">
-          <input type="radio" (click)="showOaInfo(oa3.id, 3, i)">
+          <img *ngIf="!oa3.seleccionado" src="assets/icon1.png" height="20px" width="20px" (click)="showOaInfo(oa3.id, 3, i)"/>
+          <img *ngIf="oa3.seleccionado" src="assets/icon2.png" height="20px" width="20px" (click)="showOaInfo(oa3.id, 3, i)"/>
+          <!--<input type="radio" (click)="showOaInfo(oa3.id, 3, i)">-->
           {{oa3.descripcion}}
         </div>
         <div class="cardOaname">
@@ -108,7 +115,8 @@
       </div>
       <div *ngFor="let oa4 of oasMapa4; let i = index">
         <div class="cardOa" [style.height]="oa4.cardHeight + 'px'">
-          <input type="radio" (click)="showOaInfo(oa4.id, 4, i)">
+          <img *ngIf="!oa4.seleccionado" src="assets/icon1.png" height="20px" width="20px" (click)="showOaInfo(oa4.id, 4, i)"/>
+          <img *ngIf="oa4.seleccionado" src="assets/icon2.png" height="20px" width="20px" (click)="showOaInfo(oa4.id, 4, i)"/>
           {{oa4.descripcion}}
         </div>
         <div class="cardOaname">
@@ -124,7 +132,8 @@
       </div>
       <div *ngFor="let oa5 of oasMapa5; let i = index">
         <div class="cardOa" [style.height]="oa5.cardHeight + 'px'">
-          <input type="radio" (click)="showOaInfo(oa5.id, 5, i)">
+          <img *ngIf="!oa5.seleccionado" src="assets/icon1.png" height="20px" width="20px" (click)="showOaInfo(oa5.id, 5, i)"/>
+          <img *ngIf="oa5.seleccionado" src="assets/icon2.png" height="20px" width="20px" (click)="showOaInfo(oa5.id, 5, i)"/>
           {{oa5.descripcion}}
         </div>
         <div class="cardOaname">
@@ -140,7 +149,8 @@
       </div>
       <div *ngFor="let oa6 of oasMapa6; let i = index">
         <div class="cardOa" [style.height]="oa6.cardHeight + 'px'">
-          <input type="radio" (click)="showOaInfo(oa6.id, 6, i)">
+          <img *ngIf="!oa6.seleccionado" src="assets/icon1.png" height="20px" width="20px" (click)="showOaInfo(oa6.id, 6, i)"/>
+          <img *ngIf="oa6.seleccionado" src="assets/icon2.png" height="20px" width="20px" (click)="showOaInfo(oa6.id, 6, i)"/>
           {{oa6.descripcion}}
         </div>
         <div class="cardOaname">

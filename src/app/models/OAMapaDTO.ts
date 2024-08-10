@@ -8,4 +8,5 @@ export class OAMapaDTO {
     x: string = "";
     y: string = "";
     tienePosicionamiento: boolean = false;
+    seleccionado: boolean = false;
 }
