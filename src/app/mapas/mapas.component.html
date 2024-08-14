@@ -57,7 +57,7 @@
   </div>
   <div id="sideBarContent">
     <h3 style="padding-left:10px;"><b>Actividades</b></h3>
-    <div class="sideBarHijoActividades" *ngFor="let actividad of actividades; let i = index" [ngStyle]="{'background-image':' url(' + actividad?.imagenReferencia + ')', 'box-shadow':' inset 0 0 0 2000px rgba(0, 0, 0, 0.7)','background-size':'cover'}" [ngStyle]="">
+    <div class="sideBarHijoActividades" *ngFor="let actividad of actividades; let i = index" (click)="clickActividades(i)" [ngStyle]="{'background-image':' url(' + actividad?.imagenReferencia + ')', 'box-shadow':' inset 0 0 0 2000px rgba(0, 0, 0, 0.7)','background-size':'cover'}" [ngStyle]="">
       {{actividad.ubicacionEnLibro}}
       <!--<div class="sideBarHijoDescripcionActividades">{{actividad.descripcionActividad}}</div>
       <div class="sideBarHijoBotonActividades"><a href="#"><h3><b>></b></h3></a></div>-->
@@ -74,4 +74,30 @@
   <a href="#/objetivos/5">Medición</a>
   <a href="#/objetivos/6">Geometría</a>
   <a href="#/objetivos/7">Datos y Probabilidades</a>
+</div>
+<div id="pantallaNegra" class="pantallaNegra" *ngIf="mostrandoDetalleActividad" (click)="cerrarDetalleActividad()">
+  <div id="visualizarActividad" class="visualizarActividad" *ngIf="mostrandoDetalleActividad">
+    <h3><b>Detalle de Actividad</b></h3>
+    <table style='border-collapse:collapse;table-layout:auto;width:100%'>
+      <tr>
+        <td><b>Ubicación en Libro</b></td>
+        <td>{{actividadSeleccionada.ubicacionEnLibro}}</td>
+      </tr>
+      <tr>
+        <td><b>Descripción</b></td>
+        <td>{{actividadSeleccionada.descripcionActividad}}</td>
+      </tr>
+      <tr>
+        <td><b>Link de Referencia</b></td>
+        <td><a href="{{actividadSeleccionada.linkReferencia}}">{{actividadSeleccionada.linkReferencia}}</a></td>
+      </tr>
+      <tr>
+        <td><b>Imagen de Referencia</b></td>
+        <td></td>
+      </tr>
+    </table>
+    <div>
+      <img [src]="actividadSeleccionada.imagenReferencia" style="width:100%;" />
+    </div>
+  </div>
 </div>

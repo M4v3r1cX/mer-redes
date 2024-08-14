@@ -31,6 +31,8 @@ export class MapasComponent implements AfterViewInit {
   sideBarActividadesWidth: number = 0;
   sideBarActividadesAbierto: boolean = false;
   actividades: any[] = [];
+  actividadSeleccionada: any;
+  mostrandoDetalleActividad: boolean = false;
 
   constructor(private route: ActivatedRoute, public mapaService: MapasService) {
 
@@ -149,5 +151,14 @@ export class MapasComponent implements AfterViewInit {
     this.actividades = [];
     this.sideBarActividadesWidth = 0;
     this.sideBarActividadesAbierto = false;
+  }
+
+  clickActividades(idx: number) {
+    this.actividadSeleccionada = this.actividades[idx];
+    this.mostrandoDetalleActividad = true;
+  }
+
+  cerrarDetalleActividad() {
+    this.mostrandoDetalleActividad = false;
   }
 }

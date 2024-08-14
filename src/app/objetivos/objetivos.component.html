@@ -34,25 +34,23 @@
     Cargando...
   </div>
   <div class="row" *ngIf="!showLoading">
-    <div *ngIf="sideBarInfoAbierto" class="sideBarInfo col-md-1" [style.width]="sideBarInfoWidth + 'px'">
-      <div id="sideBarContentLoading" *ngIf="sidebarContentLoading">
-        <div class="lds-ring"><div></div><div></div><div></div><div></div></div><br />
-          Cargando...
-        </div>
-        <div id="sideBarContent" *ngIf="!sidebarContentLoading">
-        <div class=""><h3><b>Ha seleccionado el {{currentSelectedOa}} de {{currentSelectedLevel}}° básico</b></h3></div>
-        <div class="currentSelectedOaInfo"><b>{{currentSelectedOaInfo}}</b></div><br />
-        <div class="currentSelectedOaInfo">Está en la RED evolutiva de Aprendizajes Matemáticos (REAM) del Campo Multiplicativo, este OA se ha desagregado en varios aspectos. 
-          Seleccione uno de ellos para localizarlo en la RED:
-        </div>
-        <div class="sideBarHijos">
-          <div class="sideBarHijo" *ngFor="let hijo of hijosOaSeleccionado; let i = index">
-            <div class="sideBarHijoDescripcion">{{hijo.descripcion}}</div>
-            <div class="sideBarHijoBoton"><a><h3><b>></b></h3></a></div>
+    <div class="pantallaNegra" (click)="cerrarSidebarHijjos()" *ngIf="sideBarInfoAbierto">
+      <div *ngIf="sideBarInfoAbierto" class="sideBarInfo col-md-1" [style.width]="sideBarInfoWidth + 'px'">
+        <div id="sideBarContentLoading" *ngIf="sidebarContentLoading">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div><br />
+            Cargando...
           </div>
-          <div class="sideBarHijo">
-            <div class="sideBarHijoDescripcion"><span> </span></div>
-            <div class="sideBarHijoBoton"><button class="btn" (click)="openInfo()">Cerrar</button></div>
+          <div id="sideBarContent" *ngIf="!sidebarContentLoading">
+          <div class=""><h3><b>Ha seleccionado el {{currentSelectedOa}} de {{currentSelectedLevel}}° básico</b></h3></div>
+          <div class="currentSelectedOaInfo"><b>{{currentSelectedOaInfo}}</b></div><br />
+          <div class="currentSelectedOaInfo">Está en la RED evolutiva de Aprendizajes Matemáticos (REAM) del Campo Multiplicativo, este OA se ha desagregado en varios aspectos. 
+            Seleccione uno de ellos para localizarlo en la RED:
+          </div>
+          <div class="sideBarHijos">
+            <div class="sideBarHijo" *ngFor="let hijo of hijosOaSeleccionado; let i = index">
+              <div class="sideBarHijoDescripcion">{{hijo.descripcion}}</div>
+              <div class="sideBarHijoBoton"><a><h3><b>></b></h3></a></div>
+            </div>
           </div>
         </div>
       </div>

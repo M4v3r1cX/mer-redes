@@ -230,7 +230,6 @@ export class ObjetivosComponent {
     } else {
       this.sideBarInfoWidth = 0;
       this.sideBarInfoAbierto = false;
-      // desmarcar la wea de la lista de weas
     }
   }
 
@@ -258,4 +257,11 @@ export class ObjetivosComponent {
       }
     }
   } 
+
+  cerrarSidebarHijjos() {
+    this.checkIfClose();
+    this.hijosOaSeleccionado = [];
+    this.sideBarInfoWidth = 0;
+    this.sideBarInfoAbierto = false;
+  }
 }
