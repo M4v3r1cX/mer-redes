@@ -24,8 +24,8 @@
     <b><i class="bi bi-list colprin" (click)="openNav()"></i> {{nombreSeccionActiva}}</b>
   </div>
   <div class="col-md-6 float-end align-middle">
-    <i class="bi bi-gear-fill float-end iconsize align-middle"></i>
     <i class="bi bi-basket float-end iconsize align-middle"></i> 
+    <i class="float-end iconsize align-middle">{{numeroActividadesEnRuta}}</i>
   </div>
 </div>
 <div class="main">
@@ -58,9 +58,9 @@
   <div id="sideBarContent">
     <h3 style="padding-left:10px;"><b>Actividades</b></h3>
     <div class="sideBarHijoActividades" *ngFor="let actividad of actividades; let i = index" (click)="clickActividades(i)" [ngStyle]="{'background-image':' url(' + actividad?.imagenReferencia + ')', 'box-shadow':' inset 0 0 0 2000px rgba(0, 0, 0, 0.7)','background-size':'cover'}" [ngStyle]="">
+      <img *ngIf="!actividad.seleccionado" src="assets/icon1.png" height="20px" width="20px" (click)="seleccionarActividad(i, true)"/>
+      <img *ngIf="actividad.seleccionado" src="assets/icon2.png" height="20px" width="20px" (click)="seleccionarActividad(i, false)"/>
       {{actividad.ubicacionEnLibro}}
-      <!--<div class="sideBarHijoDescripcionActividades">{{actividad.descripcionActividad}}</div>
-      <div class="sideBarHijoBotonActividades"><a href="#"><h3><b>></b></h3></a></div>-->
     </div>
     <button class="btn btn-mer-blanco" (click)="cerrarSidebarActividades()">Cerrar</button>
   </div>

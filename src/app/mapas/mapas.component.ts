@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import panzoom from "panzoom";
 import { ActivatedRoute } from '@angular/router';
 import { MapasService } from '../services/mapas.service';
@@ -33,6 +33,10 @@ export class MapasComponent implements AfterViewInit {
   actividades: any[] = [];
   actividadSeleccionada: any;
   mostrandoDetalleActividad: boolean = false;
+  numeroActividadesEnRuta: number = 0;
+  actividadesEnRuta: any[] = [];
+  sideBarRutasAbierto: boolean = false;
+  sideBarRutasWidth: number = 0;
 
   constructor(private route: ActivatedRoute, public mapaService: MapasService) {
 
@@ -160,5 +164,19 @@ export class MapasComponent implements AfterViewInit {
 
   cerrarDetalleActividad() {
     this.mostrandoDetalleActividad = false;
+  }
+
+  seleccionarActividad(idx: number, seleccionado: boolean) {
+    if (seleccionado) {
+      this.actividadesEnRuta.push(this.actividades[idx]);
+      this.numeroActividadesEnRuta++;
+    } else {
+      this.actividadesEnRuta.splice(idx, 1);
+      this.numeroActividadesEnRuta--;
+    }
+  }
+
+  mostrarRutas() {
+
   }
 }
