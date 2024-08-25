@@ -177,6 +177,10 @@ export class MapasComponent implements AfterViewInit {
   }
 
   mostrarRutas() {
-
+    if (this.sideBarRutasAbierto) {
+      this.sideBarRutasAbierto = false;
+    } else {
+      this.sideBarRutasAbierto = true;
+    }
   }
 }

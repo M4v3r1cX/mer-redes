@@ -24,7 +24,7 @@
     <b><i class="bi bi-list colprin" (click)="openNav()"></i> {{nombreSeccionActiva}}</b>
   </div>
   <div class="col-md-6 float-end align-middle">
-    <i class="bi bi-basket float-end iconsize align-middle"></i> 
+    <i class="bi bi-basket float-end iconsize align-middle" (click)="mostrarRutas()"></i> 
     <i class="float-end iconsize align-middle">{{numeroActividadesEnRuta}}</i>
   </div>
 </div>
@@ -98,6 +98,27 @@
     </table>
     <div>
       <img [src]="actividadSeleccionada.imagenReferencia" style="width:100%;" />
+    </div>
+  </div>
+</div>
+<div id="sidebarRuta" *ngIf="sideBarRutasAbierto">
+  <h1>MIS RUTAS</h1>
+  <div class="itemRuta" *ngFor="let ar of actividadesEnRuta; let i = index">
+    <div class="infoOa"><b>3° > OA8</b></div>
+    <div class="zonaTexto">
+      <div class="itemRutaTexto">
+        {{ar.descripcionActividad}}<br />
+        <b>{{ar.ubicacionEnLibro}}</b>
+      </div>
+    </div>
+    <div class="botonera">
+      <img class="btnojo" src="assets/ojo.svg" height="20px" width="20px" (click)="seleccionarActividad(1, true)"/>
+      <img class="btntacho" src="assets/tacho.svg" height="20px" width="20px" (click)="seleccionarActividad(1, true)"/>
+    </div>
+    <div class="zonaOrden">
+      <img src="assets/Polygon1.svg" height="20px" width="20px" (click)="seleccionarActividad(1, true)"/><br />
+      {{i + 1}}<br />
+      <img src="assets/Polygon2.svg" height="20px" width="20px" (click)="seleccionarActividad(1, true)"/>
     </div>
   </div>
 </div>
