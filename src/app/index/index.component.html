@@ -2,10 +2,10 @@
 <link href='https://fonts.googleapis.com/css?family=Nunito Sans' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
 <div class="row n">
-    <div class="col-md-6 logo">
+    <div class="col-md-6 logo" [routerLink]="['/']">
       <img src="assets/logo.png" />
       <a class="txtlogo align-middle">MATEMATICA EN RUTA</a>
-  </div>
+    </div>
     <div class="col-md-2">
       <span></span>
     </div>
@@ -24,8 +24,6 @@
     <b><i class="bi bi-list colprin" (click)="openNav()"></i> Redes Evolutivas</b>
   </div>
   <div class="col-md-6 float-end align-middle">
-    <i class="bi bi-gear-fill float-end iconsize align-middle"></i>
-    <i class="bi bi-basket float-end iconsize align-middle"></i> 
   </div>
 </div>
 <div class="main">

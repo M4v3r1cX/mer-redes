@@ -2,7 +2,7 @@
 <link href='https://fonts.googleapis.com/css?family=Nunito Sans' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
 <div class="row n">
-    <div class="col-md-6 logo">
+  <div class="col-md-6 logo" [routerLink]="['/']">
       <img src="assets/logo.png" />
       <a class="txtlogo align-middle">MATEMATICA EN RUTA</a>
   </div>
@@ -36,6 +36,16 @@
 <div id="zonamapa" [style.background-image]="'url(' +backgroundMapa +')'">
   <div *ngFor="let oa of oasMapa; let i = index" class="textoOa" [style.left]="xMapa[i] + 'px'" [style.top]="yMapa[i] + 'px'" (click)="cargarHijos(i)"><p>{{oa.descripcion}}</p></div>
 </div>
+</div>
+<div id="mySidenav" class="sidenav" [style.width]="sidenavwidth + 'px'">
+  <a href="#/objetivos/1">Números</a>
+  <a href="#/objetivos/2">Campo Aditivo</a>
+  <a href="#/objetivos/3">Campo Multiplicativo</a>
+  <a href="#/objetivos/4">Patrones y Álgebra</a>
+  <a href="#/objetivos/5">Medición</a>
+  <a href="#/objetivos/6">Geometría</a>
+  <a href="#/objetivos/7">Datos y Probabilidades</a>
+</div>
 <div *ngIf="sideBarHijosAbierto" class="sideBarHijos col-md-1" [style.width]="sideBarHijosWidth + 'px'">
   <div id="sideBarContentLoading" *ngIf="sideBarContentLoading">
     <div class="lds-ring"><div></div><div></div><div></div><div></div></div><br />
@@ -57,23 +67,15 @@
   </div>
   <div id="sideBarContent">
     <h3 style="padding-left:10px;"><b>Actividades</b></h3>
-    <div class="sideBarHijoActividades" *ngFor="let actividad of actividades; let i = index" (click)="clickActividades(i)" [ngStyle]="{'background-image':' url(' + actividad?.imagenReferencia + ')', 'box-shadow':' inset 0 0 0 2000px rgba(0, 0, 0, 0.7)','background-size':'cover'}" [ngStyle]="">
-      <img *ngIf="!actividad.seleccionado" src="assets/icon1.png" height="20px" width="20px" (click)="seleccionarActividad(i, true)"/>
-      <img *ngIf="actividad.seleccionado" src="assets/icon2.png" height="20px" width="20px" (click)="seleccionarActividad(i, false)"/>
-      {{actividad.ubicacionEnLibro}}
+    <div class="sideBarHijoActividades" *ngFor="let actividad of actividades; let i = index" [ngStyle]="{'background-image':' url(' + actividad?.imagenReferencia + ')', 'box-shadow':' inset 0 0 0 2000px rgba(0, 0, 0, 0.7)','background-size':'cover'}" [ngStyle]="">
+      <div class="sideBarHijoActividadesBoton">
+        <img *ngIf="!actividad.seleccionado" src="assets/icon1w.png" height="25px" width="25px" (click)="seleccionarActividad(i, true)"/>
+        <img *ngIf="actividad.seleccionado" src="assets/icon2w.png" height="25px" width="25px" (click)="seleccionarActividad(i, false)"/>
+      </div>
+      <div class="sideBarHijoActividadesDescripcion" (click)="clickActividades(i)">{{actividad.ubicacionEnLibro}}</div>
     </div>
-    <button class="btn btn-mer-blanco" (click)="cerrarSidebarActividades()">Cerrar</button>
+    <button class="btn btn-mer-blanco" (click)="cerrarSidebarHijjos()">Cerrar</button>
   </div>
-</div>
-</div>
-<div id="mySidenav" class="sidenav" [style.width]="sidenavwidth + 'px'">
-  <a href="#/objetivos/1">Números</a>
-  <a href="#/objetivos/2">Campo Aditivo</a>
-  <a href="#/objetivos/3">Campo Multiplicativo</a>
-  <a href="#/objetivos/4">Patrones y Álgebra</a>
-  <a href="#/objetivos/5">Medición</a>
-  <a href="#/objetivos/6">Geometría</a>
-  <a href="#/objetivos/7">Datos y Probabilidades</a>
 </div>
 <div id="pantallaNegra" class="pantallaNegra" *ngIf="mostrandoDetalleActividad" (click)="cerrarDetalleActividad()">
   <div id="visualizarActividad" class="visualizarActividad" *ngIf="mostrandoDetalleActividad">
@@ -102,23 +104,29 @@
   </div>
 </div>
 <div id="sidebarRuta" *ngIf="sideBarRutasAbierto">
-  <h1>MIS RUTAS</h1>
-  <div class="itemRuta" *ngFor="let ar of actividadesEnRuta; let i = index">
-    <div class="infoOa"><b>3° > OA8</b></div>
-    <div class="zonaTexto">
-      <div class="itemRutaTexto">
-        {{ar.descripcionActividad}}<br />
-        <b>{{ar.ubicacionEnLibro}}</b>
+  <div class="sidebarRutaHeader">
+    <div class="sidebarRutaHeaderTitulo">MIS RUTAS</div>
+    <div class="sidebarRutaHeaderBoton pdf" (click)="exportarPDF()" *ngIf="actividadesEnRuta.length > 0"><img src="assets/save.png" height="20px" width="20px"/> Exportar a PDF</div>
+    <div class="sidebarRutaHeaderBoton" (click)="exportarPDF()" *ngIf="actividadesEnRuta.length > 0"><img src="assets/save.png" height="20px" width="20px"/> Guardar en la nube</div>
+  </div>
+  <div class="sidebarRutaInfo" *ngIf="actividadesEnRuta.length == 0">Aun no se han agregado rutas</div>
+  <div class="sidebarRutaItemsContainer">
+    <div class="itemRuta" *ngFor="let ar of actividadesEnRuta; let i = index">
+      <div class="infoOa"><b>{{ar.ruta}}</b></div>
+      <div class="zonaTexto">
+        <div class="itemRutaTexto">
+          {{ar.descripcionActividad}}<br />
+          <b>{{ar.ubicacionEnLibro}}</b>
+        </div>
+      </div>
+      <div class="zonaOrden">
+        <img src="assets/Polygon1.svg" height="20px" width="20px" (click)="ordenar(i, 'up')"/><br />
+        {{i + 1}}<br />
+        <img src="assets/Polygon2.svg" height="20px" width="20px" (click)="ordenar(i, 'down')"/><br /><br />
+        <img class="btnojo" src="assets/ojo.svg" height="30px" width="30px" (click)="clickActividadesOjo(i)"/>
+        <img class="btntacho" src="assets/tacho.svg" height="30px" width="30px" (click)="eliminarActividadEnRuta(i)"/>
       </div>
     </div>
-    <div class="botonera">
-      <img class="btnojo" src="assets/ojo.svg" height="20px" width="20px" (click)="seleccionarActividad(1, true)"/>
-      <img class="btntacho" src="assets/tacho.svg" height="20px" width="20px" (click)="seleccionarActividad(1, true)"/>
-    </div>
-    <div class="zonaOrden">
-      <img src="assets/Polygon1.svg" height="20px" width="20px" (click)="seleccionarActividad(1, true)"/><br />
-      {{i + 1}}<br />
-      <img src="assets/Polygon2.svg" height="20px" width="20px" (click)="seleccionarActividad(1, true)"/>
-    </div>
   </div>
+  
 </div>

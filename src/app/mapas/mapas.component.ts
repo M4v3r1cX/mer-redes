@@ -3,6 +3,8 @@ import panzoom from "panzoom";
 import { ActivatedRoute } from '@angular/router';
 import { MapasService } from '../services/mapas.service';
 import { OAMapaDTO } from '../models/OAMapaDTO';
+import { jsPDF } from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 @Component({
   selector: 'app-mapas',
@@ -80,7 +82,12 @@ export class MapasComponent implements AfterViewInit {
         this.agregarCuadros(data);
       });
     }
-    //this.nombreSeccionActiva = this.id + '';
+
+    let rutaGuardada = localStorage.getItem('ruta');
+    if (rutaGuardada != null) {
+      this.actividadesEnRuta = JSON.parse(rutaGuardada);
+      this.numeroActividadesEnRuta = this.actividadesEnRuta.length;
+    }
   }
 
   ngAfterViewInit() {
@@ -151,14 +158,13 @@ export class MapasComponent implements AfterViewInit {
     });
   }
 
-  cerrarSidebarActividades() {
-    this.actividades = [];
-    this.sideBarActividadesWidth = 0;
-    this.sideBarActividadesAbierto = false;
-  }
-
   clickActividades(idx: number) {
     this.actividadSeleccionada = this.actividades[idx];
+    this.mostrandoDetalleActividad = true;
+  }
+
+  clickActividadesOjo(idx: number) {
+    this.actividadSeleccionada = this.actividadesEnRuta[idx];
     this.mostrandoDetalleActividad = true;
   }
 
@@ -168,12 +174,15 @@ export class MapasComponent implements AfterViewInit {
 
   seleccionarActividad(idx: number, seleccionado: boolean) {
     if (seleccionado) {
+      this.actividades[idx].seleccionado = true;
       this.actividadesEnRuta.push(this.actividades[idx]);
       this.numeroActividadesEnRuta++;
     } else {
+      this.actividades[idx].seleccionado = false;
       this.actividadesEnRuta.splice(idx, 1);
       this.numeroActividadesEnRuta--;
     }
+    this.saveRutaEnLocalStorage();
   }
 
   mostrarRutas() {
@@ -182,5 +191,89 @@ export class MapasComponent implements AfterViewInit {
     } else {
       this.sideBarRutasAbierto = true;
     }
+  }
+
+  eliminarActividadEnRuta(idx: number) {
+    let act = this.actividadesEnRuta[idx];
+    let idxAct = this.actividades.findIndex((a) => a.id == act.id);
+    console.log(idxAct);
+    if (idxAct != -1) {
+      this.actividades[idxAct].seleccionado = false;
+    }
+    this.actividadesEnRuta.splice(idx, 1);
+    this.numeroActividadesEnRuta--;
+    if (this.numeroActividadesEnRuta == 0) {
+      localStorage.removeItem('ruta');
+    } else {
+      this.saveRutaEnLocalStorage();
+    }
+  }
+
+  cerrarSidebars() {
+    this.sideBarActividadesAbierto = false;
+    this.sideBarActividadesWidth = 0;
+    this.sideBarHijosAbierto = false;
+    this.sideBarHijosWidth = 0;
+  }
+
+  ordenar(idx: number, direccion: string) {
+    let temp = this.actividadesEnRuta[idx];
+    if (direccion == 'up') {
+      if (idx - 1 > -1) {
+        this.actividadesEnRuta[idx] = this.actividadesEnRuta[idx - 1];
+        this.actividadesEnRuta[idx - 1] = temp;
+      }
+    } else {
+      if (idx + 1 < this.actividadesEnRuta.length) {
+        this.actividadesEnRuta[idx] = this.actividadesEnRuta[idx + 1];
+        this.actividadesEnRuta[idx + 1] = temp;
+      }
+    }
+    this.saveRutaEnLocalStorage();
+  }
+
+  saveRutaEnLocalStorage() {
+    localStorage.setItem('ruta', JSON.stringify(this.actividadesEnRuta));
+  }
+
+  saveRuta() {
+    let ruta = {
+      nombre: 'Ruta de ' + this.actividadesEnRuta[0].nombre,
+      actividades: this.actividadesEnRuta
+    }
+    /*this.mapaService.saveRuta(ruta).subscribe((data:any) => {
+      console.log(data);
+    });*/
+  }
+
+  exportarPDF() {
+    const doc = new jsPDF();
+    doc.setFontSize(16);
+		doc.text('Mis Rutas', 10, 10);
+		const headers = [['Ruta', 'Descripción', 'Ubicación en Libro']];
+		let data: any[] = [];
+
+    let rutas = [];
+    let keys = Object.keys(localStorage);
+    let i = keys.length;
+
+    while ( i-- ) {
+      rutas.push(localStorage.getItem(keys[i]));
+    }
+  
+    for (let r of rutas) {
+      let ruta = JSON.parse(r??"");
+      for (let a of ruta) {
+        let row = [a.ruta, a.descripcionActividad, a.ubicacionEnLibro];
+        data.push(row);
+      }
+    }
+
+		autoTable(doc, {
+			head: headers,
+			body: data,
+			startY: 20,
+		});
+		doc.save('rutas.pdf');
   }
 }

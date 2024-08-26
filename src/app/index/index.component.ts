@@ -33,8 +33,6 @@ export class IndexComponent {
   }*/
 
   openNav() {
-    //let sidebar = document.getElementById("mySidenav");
-    //sidebar?.style['width'] = "":
     if (!this.sidebarAbierto) {
       this.sidenavwidth = 400;
       this.sidebarAbierto = true;
@@ -46,7 +44,6 @@ export class IndexComponent {
   }
   
   closeNav() {
-    //document.getElementById("mySidenav").style.width = "0";
     this.sidenavwidth = 0;
   }
 }

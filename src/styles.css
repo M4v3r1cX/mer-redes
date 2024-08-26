@@ -21,10 +21,10 @@ html, body {
   }
   
   .subheader {
-    padding-top: 10px;
+    padding-top: 15px;
     padding-left: 50px;
     padding-right: 50px;
-    padding-bottom: 5px;
+    padding-bottom: 15px;
     background-color: #E6E6E6;
     font-family: 'Nunito';
     color: #999999;
