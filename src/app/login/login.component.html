@@ -1,0 +1,60 @@
+<div class="container">
+  <div *ngIf="loadingVisible">
+    <mat-spinner class="center"></mat-spinner>
+  </div>
+    <br />
+    <div class="row">
+      <div class="logo">
+        <img src="assets/logo.png" />
+        <a class="txtlogo align-middle">MATEMATICA EN RUTA</a>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="txtInicioSesion"><b>¡Ingresa a Matemática en Ruta!</b></h1>
+        </div>
+    </div>
+    <br />
+    <form class="custom-form mx-auto" method="post">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="email" name="emailLabel" class="float-end">
+              E-Mail
+          </label>
+          </div>
+          <div class="col-md-6">
+            <input matInput
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="Email..."
+          required="required"
+        />
+          </div>
+        
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label for="password" name="passwordLabel" class="float-end">
+              Contraseña
+          </label>
+          </div>
+          <div class="col-md-6">
+            <input matInput 
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          placeholder="Contraseña..."
+          required="required"
+        />
+        </div>
+        
+      </div>
+      <br />
+      <div class="row">
+        <div class="d-flex justify-content-center">
+          <button class="btn btn-dark float-end" type="submit" (click)="login()"><i class="bi bi-save"></i> Iniciar Sesión</button>
+        </div>
+        </div>
+    </form>
+</div>

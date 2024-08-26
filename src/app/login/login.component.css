@@ -1,0 +1,23 @@
+.container {
+    font-family: 'Nunito Sans';
+    background-color: #003D52;
+    color: #8CB5BD;
+    height: 350px;
+}
+
+.center{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+ }
+
+ .txtInicioSesion {
+    text-align: center;
+    font-family: 'Nunito Sans';
+ }
+
+ .logo {
+    text-align: center;
+    color:#8CB5BD
+ }

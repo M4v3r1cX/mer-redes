@@ -29,4 +29,8 @@ export class MapasService {
   getActividadesByIdTareaMatematica(id?: number) {
     return this.http.get(this.REST_URL + "mapas/getActividadesByTareaMatematica?id=" + id);
   }
+
+  saveRuta(ruta: any) {
+    return this.http.post(this.REST_URL + "mapas/saveRuta", ruta);
+  }
 }

@@ -339,7 +339,7 @@
     align-items: center
   }
 
-  #sidebarRuta {
+  .sidebarRuta {
     height: 500px;
     width: 500px;
     margin-top: 149px;
@@ -453,6 +453,50 @@
     text-align: center;
   }
 
+  .marginMargin {
+    margin-left: 150px;
+  }
+
   .sidebarRutaItemsContainer {
     margin-top: 70px;
+  }
+
+  .iconitomapa {
+    height: 30px;
+    width: 30px;
+  }
+
+  .subhmapa {
+    height: 60px;
+  }
+
+  .btnrutasimg {
+    padding:0px;
+    margin:0px;
+    height: 35px;
+    width: 250px;
+    padding-right: 22px;
+    padding-top: 2px;
+    padding-bottom: 5px;
+    border: 2px solid #999;
+    border-radius: 20px;
+  }
+
+  .btnrutasimg:hover {
+    border: 2px solid #005A6C;
+    color: #005A6C;
+  }
+
+  .sidebarRutaInfoBoton {
+    padding: 10px;
+    border: 2px solid #8CB5BD;
+    border-radius: 20px;
+    color: #8CB5BD;
+    margin-top: 20px;
+    width: 200px;
+  }
+
+  .sidebarRutaInfoBoton:hover {
+    border: 2px solid white;
+    color: white;
   }

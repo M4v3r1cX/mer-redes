@@ -6,7 +6,7 @@
   background-size: cover;
   padding: 10px;
   overflow-y: hidden;
-  margin-top: 149px;
+  margin-top: 140px;
 }
 
 .welcome {
@@ -65,7 +65,7 @@
   height: 100%;
   position: fixed;
   z-index: 1;
-  margin-top: 150px;
+  margin-top: 140px;
   top: 0;
   left: 0;
   background-color: #005A6C;

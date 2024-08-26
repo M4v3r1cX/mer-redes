@@ -5,6 +5,10 @@ import { MapasService } from '../services/mapas.service';
 import { OAMapaDTO } from '../models/OAMapaDTO';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { LoginComponent } from '../login/login.component';
+import { UsersService } from '../services/users.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-mapas',
@@ -39,9 +43,33 @@ export class MapasComponent implements AfterViewInit {
   actividadesEnRuta: any[] = [];
   sideBarRutasAbierto: boolean = false;
   sideBarRutasWidth: number = 0;
+  idRutaActiva: number = -1;
+  mostrarMenuUsuario: boolean = false;
 
-  constructor(private route: ActivatedRoute, public mapaService: MapasService) {
+  constructor(
+    private route: ActivatedRoute, 
+    public mapaService: MapasService, 
+    public dialog: MatDialog, 
+    public usersService: UsersService) {
 
+  }
+
+  levantarLogin() {
+    if (!this.loginLevantado) {
+      this.loginLevantado = true;
+      const dialogRef = this.dialog.open(LoginComponent, {
+        height: '300px',
+        width: '700px'
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (this.usersService.isLoggedIn()) {
+          this.actividadesEnRuta = [];
+          localStorage.removeItem('ruta');
+        }
+        this.loginLevantado = false;
+        this.dialog.closeAll();
+      });
+    }
   }
 
   ngOnInit() {
@@ -87,6 +115,10 @@ export class MapasComponent implements AfterViewInit {
     if (rutaGuardada != null) {
       this.actividadesEnRuta = JSON.parse(rutaGuardada);
       this.numeroActividadesEnRuta = this.actividadesEnRuta.length;
+    }
+    let idRutaActiva = localStorage.getItem('idRutaActiva');
+    if (idRutaActiva != null) {
+      this.idRutaActiva = parseInt(idRutaActiva);
     }
   }
 
@@ -237,13 +269,22 @@ export class MapasComponent implements AfterViewInit {
   }
 
   saveRuta() {
+    const datepipe: DatePipe = new DatePipe('en-US')
+    let formattedDate = datepipe.transform(new Date(), 'dd-MMM-YYYY HH:mm:ss')
     let ruta = {
-      nombre: 'Ruta de ' + this.actividadesEnRuta[0].nombre,
+      nombre: formattedDate,
       actividades: this.actividadesEnRuta
     }
-    /*this.mapaService.saveRuta(ruta).subscribe((data:any) => {
+    this.mapaService.saveRuta(ruta).subscribe((data:any) => {
       console.log(data);
-    });*/
+      this.idRutaActiva = data;
+      localStorage.setItem('idRutaActiva', this.idRutaActiva.toString());
+      this.mostrarMenuUsuario = false;
+    });
+  }
+
+  loadRuta() {
+    // TODO
   }
 
   exportarPDF() {

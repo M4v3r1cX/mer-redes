@@ -20,6 +20,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ApiInterceptorService } from './services/api-interceptor.service';
 import { MapasComponent } from './mapas/mapas.component';
 import { ObjetivosComponent } from './objetivos/objetivos.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ObjetivosComponent } from './objetivos/objetivos.component';
     IndexComponent,
     FilterPipe,
     MapasComponent,
-    ObjetivosComponent
+    ObjetivosComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

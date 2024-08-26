@@ -5,27 +5,25 @@
   <div class="col-md-6 logo" [routerLink]="['/']">
       <img src="assets/logo.png" />
       <a class="txtlogo align-middle">MATEMATICA EN RUTA</a>
-  </div>
-    <div class="col-md-2">
-      <span></span>
     </div>
-    <div class="col-md-2">
-      <input type="text" class="form-control float-end form-rounded" placeholder="Buscar" />
+    <div class="col-md-6" *ngIf="!usersService.isLoggedIn()">
+      <a class="btn-mer float-end" (click)="levantarLogin()"><b>Ingresa</b></a>
     </div>
-      <div class="col-md-1">
-        <a class="btn-mer-blanco float-end" href="#">Registrarse</a>
-      </div>
-      <div class="col-md-1">
-        <a class="btn-mer float-start" href="#"><b>Ingresa</b></a>
-      </div>
+    <div class="col-md-6" *ngIf="usersService.isLoggedIn()">
+      <a class="btn-mer float-end" [routerLink]="['/logout']"><b>Cerrar Sesión</b></a>
+    </div>
 </div>
-<div class="row subheader">
+<div class="row subheader subhmapa">
   <div class="col-md-6">
     <b><i class="bi bi-list colprin" (click)="openNav()"></i> {{nombreSeccionActiva}}</b>
   </div>
-  <div class="col-md-6 float-end align-middle">
-    <i class="bi bi-basket float-end iconsize align-middle" (click)="mostrarRutas()"></i> 
-    <i class="float-end iconsize align-middle">{{numeroActividadesEnRuta}}</i>
+  <div class="col-md-6">
+    <div class="btnrutasimg float-end" (click)="mostrarRutas()">
+      <p class="float-end" *ngIf="!sideBarRutasAbierto">{{numeroActividadesEnRuta}} rutas seleccionadas</p>
+      <p class="float-end" *ngIf="sideBarRutasAbierto">Cerrar Rutas</p>
+      <img *ngIf="!sideBarRutasAbierto" class="iconitomapa float-end" src="assets/map.png" />
+      <img *ngIf="sideBarRutasAbierto" class="iconitomapa float-end" src="assets/close.png" />
+    </div>
   </div>
 </div>
 <div class="main">
@@ -103,11 +101,11 @@
     </div>
   </div>
 </div>
-<div id="sidebarRuta" *ngIf="sideBarRutasAbierto">
+<div class="sidebarRuta" *ngIf="sideBarRutasAbierto && !mostrarMenuUsuario">
   <div class="sidebarRutaHeader">
     <div class="sidebarRutaHeaderTitulo">MIS RUTAS</div>
-    <div class="sidebarRutaHeaderBoton pdf" (click)="exportarPDF()" *ngIf="actividadesEnRuta.length > 0"><img src="assets/save.png" height="20px" width="20px"/> Exportar a PDF</div>
-    <div class="sidebarRutaHeaderBoton" (click)="exportarPDF()" *ngIf="actividadesEnRuta.length > 0"><img src="assets/save.png" height="20px" width="20px"/> Guardar en la nube</div>
+    <div class="sidebarRutaHeaderBoton pdf" (click)="exportarPDF()" *ngIf="actividadesEnRuta.length > 0"><img src="assets/print.png" height="20px" width="20px"/> Exportar a PDF</div>
+    <div class="sidebarRutaHeaderBoton" *ngIf="usersService.isLoggedIn() && actividadesEnRuta.length > 0" (click)="mostrarMenuUsuario = true"><img src="assets/settings.png" height="20px" width="20px"/> Administrar Rutas</div>
   </div>
   <div class="sidebarRutaInfo" *ngIf="actividadesEnRuta.length == 0">Aun no se han agregado rutas</div>
   <div class="sidebarRutaItemsContainer">
@@ -127,6 +125,16 @@
         <img class="btntacho" src="assets/tacho.svg" height="30px" width="30px" (click)="eliminarActividadEnRuta(i)"/>
       </div>
     </div>
+  </div>
+</div>
+<div id="menuUsuario" class="sidebarRuta" *ngIf="mostrarMenuUsuario">
+  <div class="sidebarRutaHeader">
+    <div class="sidebarRutaHeaderTitulo">Administrar Rutas</div>
+    <div class="sidebarRutaHeaderBoton" (click)="mostrarMenuUsuario = false"><img src="assets/close.png" height="20px" width="20px"/> Cerrar</div>
+  </div>
+  <div class="sidebarRutaInfo">
+    <div class="sidebarRutaInfoBoton marginMargin" (click)="saveRuta()"><img src="assets/cloud.png" height="20px" width="20px" /> Guardar en la Nube</div>
+    <div class="sidebarRutaInfoBoton marginMargin" (click)="loadRuta()"><img src="assets/cloud.png" height="20px" width="20px" />Cargar desde la Nube</div>
   </div>
   
 </div>
