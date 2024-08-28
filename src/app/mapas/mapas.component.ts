@@ -2,6 +2,7 @@ import { Component, AfterViewInit } from '@angular/core';
 import panzoom from "panzoom";
 import { ActivatedRoute } from '@angular/router';
 import { MapasService } from '../services/mapas.service';
+import { ActividadService } from '../services/actividad.service';
 import { OAMapaDTO } from '../models/OAMapaDTO';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
@@ -45,12 +46,14 @@ export class MapasComponent implements AfterViewInit {
   sideBarRutasWidth: number = 0;
   idRutaActiva: number = -1;
   mostrarMenuUsuario: boolean = false;
+  rutasDesdeBd: any[] = [];
 
   constructor(
     private route: ActivatedRoute, 
     public mapaService: MapasService, 
     public dialog: MatDialog, 
-    public usersService: UsersService) {
+    public usersService: UsersService,
+    public actividadService: ActividadService) {
 
   }
 
@@ -196,8 +199,10 @@ export class MapasComponent implements AfterViewInit {
   }
 
   clickActividadesOjo(idx: number) {
-    this.actividadSeleccionada = this.actividadesEnRuta[idx];
-    this.mostrandoDetalleActividad = true;
+    this.actividadService.getActividad(this.actividadesEnRuta[idx].id).subscribe((data:any) => {
+      this.actividadSeleccionada = data;
+      this.mostrandoDetalleActividad = true;
+    });
   }
 
   cerrarDetalleActividad() {
@@ -207,7 +212,14 @@ export class MapasComponent implements AfterViewInit {
   seleccionarActividad(idx: number, seleccionado: boolean) {
     if (seleccionado) {
       this.actividades[idx].seleccionado = true;
-      this.actividadesEnRuta.push(this.actividades[idx]);
+      let act = this.actividades[idx];
+      let dto = {
+        id: act.id,
+        ruta: act.ruta,
+        descripcionActividad: act.descripcionActividad,
+        ubicacionEnLibro: act.ubicacionEnLibro
+      }
+      this.actividadesEnRuta.push(dto);
       this.numeroActividadesEnRuta++;
     } else {
       this.actividades[idx].seleccionado = false;
@@ -272,19 +284,41 @@ export class MapasComponent implements AfterViewInit {
     const datepipe: DatePipe = new DatePipe('en-US')
     let formattedDate = datepipe.transform(new Date(), 'dd-MMM-YYYY HH:mm:ss')
     let ruta = {
+      id: localStorage.getItem('idRutaActiva'),
       nombre: formattedDate,
-      actividades: this.actividadesEnRuta
+      jsonRuta:  localStorage.getItem('ruta')
     }
     this.mapaService.saveRuta(ruta).subscribe((data:any) => {
       console.log(data);
-      this.idRutaActiva = data;
+      this.idRutaActiva = data.comentario;
       localStorage.setItem('idRutaActiva', this.idRutaActiva.toString());
       this.mostrarMenuUsuario = false;
     });
   }
 
   loadRuta() {
-    // TODO
+    this.mapaService.getRutasUsuario().subscribe((data:any) => {
+      for (let d of data) {
+        this.rutasDesdeBd.push(d);
+      }
+    });
+  }
+
+  loadRutaDesdeBd(idx: number) {
+    this.actividadesEnRuta = JSON.parse(this.rutasDesdeBd[idx].actividades);
+    this.numeroActividadesEnRuta = this.actividadesEnRuta.length;
+    this.idRutaActiva = this.rutasDesdeBd[idx].id;
+    localStorage.setItem('idRutaActiva', this.idRutaActiva.toString());
+    this.saveRutaEnLocalStorage();
+    this.mostrarMenuUsuario = false;
+  }
+
+  limpiarRutas() {
+    this.actividadesEnRuta = [];
+    this.numeroActividadesEnRuta = 0;
+    this.idRutaActiva = -1;
+    localStorage.removeItem('ruta');
+    localStorage.removeItem('idRutaActiva');
   }
 
   exportarPDF() {

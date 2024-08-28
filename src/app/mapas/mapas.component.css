@@ -372,10 +372,12 @@
     font-family: 'Nunito Sans';
     color: #8CB5BD;
     padding-left: 30px;
+    padding-top: 15px;
     font-size: 35px;
     font-weight: bold;
     text-decoration: none;
     float: left;
+    height: 90px;
   }
 
   .sidebarRutaHeaderBoton {
@@ -458,7 +460,7 @@
   }
 
   .sidebarRutaItemsContainer {
-    margin-top: 70px;
+    margin-top: 100px;
   }
 
   .iconitomapa {
@@ -499,4 +501,19 @@
   .sidebarRutaInfoBoton:hover {
     border: 2px solid white;
     color: white;
+  }
+
+  .sidebarRutasDesdeBd {
+    text-align: center;
+  }
+
+  .sidebarRutasDesdeBdItem {
+    margin-top: 30px;;
+    margin-left: 105px;
+    padding-bottom: 10px;
+    border: 2px solid #8CB5BD;
+    border-radius: 20px 20px 20px 20px;
+    height: 30px;
+    width: 300px;
+    text-align: center;
   }

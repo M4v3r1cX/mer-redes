@@ -31,6 +31,10 @@ export class MapasService {
   }
 
   saveRuta(ruta: any) {
-    return this.http.post(this.REST_URL + "mapas/saveRuta", ruta);
+    return this.http.post(this.REST_URL + "ruta/saveRuta", ruta);
+  }
+
+  getRutasUsuario() {
+    return this.http.get(this.REST_URL + "ruta/getRutasUsuario");
   }
 }

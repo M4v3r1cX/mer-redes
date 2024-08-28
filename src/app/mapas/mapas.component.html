@@ -104,8 +104,9 @@
 <div class="sidebarRuta" *ngIf="sideBarRutasAbierto && !mostrarMenuUsuario">
   <div class="sidebarRutaHeader">
     <div class="sidebarRutaHeaderTitulo">MIS RUTAS</div>
+    <div class="sidebarRutaHeaderBoton" *ngIf="actividadesEnRuta.length > 0" (click)="limpiarRutas()"><img src="assets/create.png" height="20px" width="20px"/> Limpiar/Crear Ruta</div>
     <div class="sidebarRutaHeaderBoton pdf" (click)="exportarPDF()" *ngIf="actividadesEnRuta.length > 0"><img src="assets/print.png" height="20px" width="20px"/> Exportar a PDF</div>
-    <div class="sidebarRutaHeaderBoton" *ngIf="usersService.isLoggedIn() && actividadesEnRuta.length > 0" (click)="mostrarMenuUsuario = true"><img src="assets/settings.png" height="20px" width="20px"/> Administrar Rutas</div>
+    <div class="sidebarRutaHeaderBoton" *ngIf="usersService.isLoggedIn()" (click)="mostrarMenuUsuario = true"><img src="assets/settings.png" height="20px" width="20px"/> Administrar Rutas</div>
   </div>
   <div class="sidebarRutaInfo" *ngIf="actividadesEnRuta.length == 0">Aun no se han agregado rutas</div>
   <div class="sidebarRutaItemsContainer">
@@ -135,6 +136,12 @@
   <div class="sidebarRutaInfo">
     <div class="sidebarRutaInfoBoton marginMargin" (click)="saveRuta()"><img src="assets/cloud.png" height="20px" width="20px" /> Guardar en la Nube</div>
     <div class="sidebarRutaInfoBoton marginMargin" (click)="loadRuta()"><img src="assets/cloud.png" height="20px" width="20px" />Cargar desde la Nube</div>
+    <div class="sidebarRutasDesdeBd" *ngIf="rutasDesdeBd.length > 0">
+      <div class="sidebarRutasDesdeBdItem" *ngFor="let r of rutasDesdeBd; let i = index" (click)="loadRutaDesdeBd(i)">
+        <div class="sidebarRutasDesdeBdItemTitulo">{{r.nombre}}</div>
+        <div class="btnEliminar"><img class="btntacho" src="assets/tacho.svg" height="30px" width="30px" (click)="eliminarRutaServer(i)"/></div>
+      </div>
+    </div>
   </div>
   
 </div>
