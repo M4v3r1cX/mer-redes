@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MapasService } from '../services/mapas.service';
 import { OaService } from '../services/oa.service';
 import { OAMapaDTO } from '../models/OAMapaDTO';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-objetivos',
@@ -39,7 +40,7 @@ export class ObjetivosComponent {
   lastSelectedPos: number = -1;
   lastSelectedLevel: number = -1;
   
-  constructor(public usersService: UsersService, public dialog: MatDialog, private route: ActivatedRoute, public mapaService: MapasService, public oaService: OaService) {
+  constructor(public usersService: UsersService, public dialog: MatDialog, private route: ActivatedRoute, public mapaService: MapasService, public oaService: OaService, private router: Router) {
     console.log(usersService.isLoggedIn());
   }
 
@@ -75,19 +76,19 @@ export class ObjetivosComponent {
     }
   }
 
-  /*levantarLogin() {
+  levantarLogin() {
     if (!this.loginLevantado) {
       this.loginLevantado = true;
       const dialogRef = this.dialog.open(LoginComponent, {
-        height: '30%',
-        width: '40%'
+        height: '300px',
+        width: '700px'
       });
       dialogRef.afterClosed().subscribe(result => {
         this.loginLevantado = false;
         this.dialog.closeAll();
       });
     }
-  }*/
+  }
 
   openNav() {
     if (!this.sidebarAbierto) {
@@ -263,5 +264,11 @@ export class ObjetivosComponent {
     this.hijosOaSeleccionado = [];
     this.sideBarInfoWidth = 0;
     this.sideBarInfoAbierto = false;
+  }
+
+  irAlMapa(idx: number) {
+    let obj = this.hijosOaSeleccionado[idx];
+    //this.router.navigateByUrl("/mapas/" + this.idRed + "/" + obj.x + "/" + obj.y);
+    this.router.navigate(["mapas", this.idRed, obj.x, obj.y]);
   }
 }

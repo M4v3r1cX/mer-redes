@@ -37,4 +37,8 @@ export class MapasService {
   getRutasUsuario() {
     return this.http.get(this.REST_URL + "ruta/getRutasUsuario");
   }
+
+  deleteRuta(id: number) {
+    return this.http.get(this.REST_URL + "ruta/deleteRutaUsuario?id=" + id);
+  }
 }

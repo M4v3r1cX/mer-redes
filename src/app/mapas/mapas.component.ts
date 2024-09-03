@@ -10,6 +10,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { UsersService } from '../services/users.service';
 import { DatePipe } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-mapas',
@@ -18,6 +19,7 @@ import { DatePipe } from '@angular/common';
 })
 export class MapasComponent implements AfterViewInit {
 
+  elPanzoom: any;
   loginLevantado = false;
   sidenavwidth: number = 0;
   sidebarAbierto = false;
@@ -47,6 +49,9 @@ export class MapasComponent implements AfterViewInit {
   idRutaActiva: number = -1;
   mostrarMenuUsuario: boolean = false;
   rutasDesdeBd: any[] = [];
+  initialX: number = 0;
+  initialY: number = 0;
+  initialZoom: number = 0.2;
 
   constructor(
     private route: ActivatedRoute, 
@@ -123,15 +128,25 @@ export class MapasComponent implements AfterViewInit {
     if (idRutaActiva != null) {
       this.idRutaActiva = parseInt(idRutaActiva);
     }
+
+    this.initialX = this.route.snapshot.paramMap.get('x') != null ? parseFloat(this.route.snapshot.paramMap.get('x')!) : 0;
+    this.initialY = this.route.snapshot.paramMap.get('y') != null ? parseFloat(this.route.snapshot.paramMap.get('y')!) : 0;
+    if (this.initialX != 0 || this.initialY != 0) {
+      this.initialX = (this.initialX * -1) + 900;
+      this.initialY = (this.initialY * -1) + 200;
+      this.initialZoom = 0.5;
+    }
   }
 
   ngAfterViewInit() {
-    panzoom(document.querySelector('#zonamapa')!,
+    this.elPanzoom = panzoom(document.querySelector('#zonamapa')!,
     {
       smoothScroll: false,
-      initialX: 0,
-      initialY: 0,
-      initialZoom: 0.24
+      initialX: this.initialX,
+      initialY: this.initialY,
+      initialZoom: this.initialZoom,
+      minZoom: 0.1,
+      maxZoom: 2,
     });
   }
 
@@ -281,25 +296,53 @@ export class MapasComponent implements AfterViewInit {
   }
 
   saveRuta() {
-    const datepipe: DatePipe = new DatePipe('en-US')
-    let formattedDate = datepipe.transform(new Date(), 'dd-MMM-YYYY HH:mm:ss')
-    let ruta = {
-      id: localStorage.getItem('idRutaActiva'),
-      nombre: formattedDate,
-      jsonRuta:  localStorage.getItem('ruta')
+    let rutaEnJson = localStorage.getItem('ruta');
+    if (rutaEnJson == null || rutaEnJson == "" || rutaEnJson == '[]') {
+      Swal.fire({ 
+        title: 'Información',
+        text: 'No ha agregado actividades a la ruta!',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+      return;
+    } else {
+      const datepipe: DatePipe = new DatePipe('en-US')
+      let formattedDate = datepipe.transform(new Date(), 'dd-MMM-YYYY HH:mm:ss')
+      let ruta = {
+        id: localStorage.getItem('idRutaActiva'),
+        nombre: formattedDate,
+        jsonRuta:  localStorage.getItem('ruta')
+      }
+      this.mapaService.saveRuta(ruta).subscribe((data:any) => {
+        console.log(data);
+        this.idRutaActiva = data.comentario;
+        localStorage.setItem('idRutaActiva', this.idRutaActiva.toString());
+        this.mostrarMenuUsuario = false;
+        Swal.fire({ 
+          title: 'Información',
+          text: 'Ruta guardada con éxito!',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        });
+      });
     }
-    this.mapaService.saveRuta(ruta).subscribe((data:any) => {
-      console.log(data);
-      this.idRutaActiva = data.comentario;
-      localStorage.setItem('idRutaActiva', this.idRutaActiva.toString());
-      this.mostrarMenuUsuario = false;
-    });
   }
 
   loadRuta() {
     this.mapaService.getRutasUsuario().subscribe((data:any) => {
-      for (let d of data) {
-        this.rutasDesdeBd.push(d);
+      this.limpiarRutas();
+      this.rutasDesdeBd = [];
+      if (data == null || data.length == 0) {
+        Swal.fire({ 
+          title: 'Información',
+          text: 'No hay rutas guardadas',
+          icon: 'info',
+          confirmButtonText: 'Aceptar'
+        });
+      } else {
+        for (let d of data) {
+          this.rutasDesdeBd.push(d);
+        }
       }
     });
   }
@@ -319,6 +362,27 @@ export class MapasComponent implements AfterViewInit {
     this.idRutaActiva = -1;
     localStorage.removeItem('ruta');
     localStorage.removeItem('idRutaActiva');
+  }
+
+  eliminarRutaServer(idx: number) {
+    Swal.fire({ 
+      title: 'Confirmación',
+      text: '¿Está seguro que desea eliminar la ruta ' + this.rutasDesdeBd[idx].nombre + '?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log('eliminando ruta');
+        this.mapaService.deleteRuta(this.rutasDesdeBd[idx].id).subscribe((data:any) => {
+          console.log('ruta eliminada');
+          console.log(data);
+          this.rutasDesdeBd.splice(idx, 1);
+          this.limpiarRutas();
+        });
+      }
+    });
   }
 
   exportarPDF() {

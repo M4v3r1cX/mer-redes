@@ -6,15 +6,19 @@
       <img src="assets/logo.png" />
       <a class="txtlogo align-middle">MATEMATICA EN RUTA</a>
     </div>
-    <div class="col-md-6">
-      <a class="btn-mer float-end" href="#"><b>Ingresa</b></a>
+    <div class="col-md-6" *ngIf="!usersService.isLoggedIn()">
+      <a class="btn-mer float-end" (click)="levantarLogin()"><b>Ingresa</b></a>
+    </div>
+    <div class="col-md-6" *ngIf="usersService.isLoggedIn()">
+      <a class="btn-mer float-end" [routerLink]="['/logout']"><b>Cerrar Sesión</b></a>
     </div>
 </div>
 <div class="row subheader">
   <div class="col-md-6">
     <b><i class="bi bi-list colprin" (click)="openNav()"></i> {{nombreSeccionActiva}}</b>
   </div>
-  <div class="col-md-6 float-end align-middle">
+  <div class="col-md-6 float-end" [routerLink]="['/mapas', idRed]">
+    <div class="float-end"><img class="iconitomapa float-end" src="assets/map.png" /><b>Ir al mapa de la red</b></div>
   </div>
 </div>
 <div class="main">
@@ -32,11 +36,11 @@
           <div id="sideBarContent" *ngIf="!sidebarContentLoading">
           <div class=""><h3><b>Ha seleccionado el {{currentSelectedOa}} de {{currentSelectedLevel}}° básico</b></h3></div>
           <div class="currentSelectedOaInfo"><b>{{currentSelectedOaInfo}}</b></div><br />
-          <div class="currentSelectedOaInfo">Está en la RED evolutiva de Aprendizajes Matemáticos (REAM) del Campo Multiplicativo, este OA se ha desagregado en varios aspectos. 
+          <div class="currentSelectedOaInfo">Está en la RED evolutiva de Aprendizajes Matemáticos (REAM) de <b>{{nombreSeccionActiva}}</b>, este OA se ha desagregado en varios aspectos. 
             Seleccione uno de ellos para localizarlo en la RED:
           </div>
           <div class="sideBarHijos">
-            <div class="sideBarHijo" *ngFor="let hijo of hijosOaSeleccionado; let i = index">
+            <div class="sideBarHijo" *ngFor="let hijo of hijosOaSeleccionado; let i = index" (click)="irAlMapa(i)">
               <div class="sideBarHijoDescripcion">{{hijo.descripcion}}</div>
               <div class="sideBarHijoBoton"><a><h3><b>></b></h3></a></div>
             </div>

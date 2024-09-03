@@ -138,8 +138,7 @@
     <div class="sidebarRutaInfoBoton marginMargin" (click)="loadRuta()"><img src="assets/cloud.png" height="20px" width="20px" />Cargar desde la Nube</div>
     <div class="sidebarRutasDesdeBd" *ngIf="rutasDesdeBd.length > 0">
       <div class="sidebarRutasDesdeBdItem" *ngFor="let r of rutasDesdeBd; let i = index" (click)="loadRutaDesdeBd(i)">
-        <div class="sidebarRutasDesdeBdItemTitulo">{{r.nombre}}</div>
-        <div class="btnEliminar"><img class="btntacho" src="assets/tacho.svg" height="30px" width="30px" (click)="eliminarRutaServer(i)"/></div>
+        {{r.nombre}} <img class="btntacho" src="assets/tacho.svg" height="20px" width="20px" (click)="eliminarRutaServer(i)"/>
       </div>
     </div>
   </div>

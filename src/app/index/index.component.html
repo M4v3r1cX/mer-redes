@@ -6,9 +6,12 @@
       <img src="assets/logo.png" />
       <a class="txtlogo align-middle">MATEMATICA EN RUTA</a>
     </div>
-      <div class="col-md-6">
-        <a class="btn-mer float-end" href="#"><b>Ingresa</b></a>
-      </div>
+    <div class="col-md-6" *ngIf="!usersService.isLoggedIn()">
+      <a class="btn-mer float-end" (click)="levantarLogin()"><b>Ingresa</b></a>
+    </div>
+    <div class="col-md-6" *ngIf="usersService.isLoggedIn()">
+      <a class="btn-mer float-end" [routerLink]="['/logout']"><b>Cerrar Sesión</b></a>
+    </div>
 </div>
 <div class="row subheader">
   <div class="col-md-6">

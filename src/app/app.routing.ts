@@ -12,6 +12,7 @@ const appRoutes = [
     //{ path: "register", component: RegisterComponent},
     { path: "objetivos/:id", component: ObjetivosComponent },
     { path: "mapas/:id", component: MapasComponent },
+    { path: "mapas/:id/:x/:y", component: MapasComponent },
     { path: "logout", component: LogoutComponent }
 ];
 
