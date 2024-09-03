@@ -268,7 +268,10 @@ export class ObjetivosComponent {
 
   irAlMapa(idx: number) {
     let obj = this.hijosOaSeleccionado[idx];
-    //this.router.navigateByUrl("/mapas/" + this.idRed + "/" + obj.x + "/" + obj.y);
-    this.router.navigate(["mapas", this.idRed, obj.x, obj.y]);
+    if (obj != null && obj.x != null && obj.y != null && obj.x != 0 && obj.y != 0) {
+      this.router.navigate(["mapas", this.idRed, obj.x, obj.y]);
+    } else {
+      this.router.navigate(["mapas", this.idRed]);
+    }
   }
 }
