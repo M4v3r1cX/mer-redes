@@ -14,7 +14,6 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "baseHref" : "/mer-redes/",
-            "deployUrl": "/mer-redes/",
             "outputPath": "dist/mer-redes",
             "index": "src/index.html",
             "main": "src/main.ts",

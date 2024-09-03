@@ -163,18 +163,20 @@ export class MapasComponent implements AfterViewInit {
 
   agregarCuadros(data: any) {
     console.log(data);
-    for (let d of data) {
-      let oa: OAMapaDTO = new OAMapaDTO();
-      let desc:string = d.descripcion;
-      oa.descripcion = desc;
-      oa.id = d.id;
-      oa.nombre = d.codigo;
-      oa.x = d.x;
-      oa.y = d .y;
-      oa.tienePosicionamiento = d.tienePosicionamiento;
-      this.xMapa.push(oa.x);
-      this.yMapa.push(oa.y);
-      this.oasMapa.push(oa);
+    if (data != null && data.length > 0) {
+      for (let d of data) {
+        let oa: OAMapaDTO = new OAMapaDTO();
+        let desc:string = d.descripcion;
+        oa.descripcion = desc;
+        oa.id = d.id;
+        oa.nombre = d.codigo;
+        oa.x = d.x;
+        oa.y = d .y;
+        oa.tienePosicionamiento = d.tienePosicionamiento;
+        this.xMapa.push(oa.x);
+        this.yMapa.push(oa.y);
+        this.oasMapa.push(oa);
+      }
     }
     this.showLoading = false;
   }
