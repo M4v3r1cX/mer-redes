@@ -145,7 +145,7 @@ export class MapasComponent implements AfterViewInit {
       initialX: this.initialX,
       initialY: this.initialY,
       initialZoom: this.initialZoom,
-      minZoom: 0.1,
+      minZoom: 0.2,
       maxZoom: 2,
     });
   }

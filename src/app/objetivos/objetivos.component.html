@@ -41,7 +41,7 @@
           </div>
           <div class="sideBarHijos">
             <div class="sideBarHijo" *ngFor="let hijo of hijosOaSeleccionado; let i = index" (click)="irAlMapa(i)">
-              <div class="sideBarHijoDescripcion">{{hijo.descripcion}}</div>
+              <div class="sideBarHijoDescripcion fuenteChica">{{hijo.descripcion}}</div>
               <div class="sideBarHijoBoton"><a><h3><b>></b></h3></a></div>
             </div>
           </div>
@@ -60,7 +60,8 @@
         </div>
         <div class="cardOaname">
           <b>{{oa1.nombre}}</b>
-          <i class="bi bi-chevron-down" (click)="expandCard(i, 1)"></i>
+          <i *ngIf="!oa1.cardExpanded" class="bi bi-chevron-down" (click)="expandCard(i, 1)"></i>
+          <i *ngIf="oa1.cardExpanded" class="bi bi-chevron-up" (click)="expandCard(i, 1)"></i>
           <!--<a href="#/mapas/{{idRed}}"><i class="bi bi-pin-map-fill"></i> Ver en el Mapa</a>-->
         </div>
       </div>
@@ -77,7 +78,8 @@
         </div>
         <div class="cardOaname">
           <b>{{oa2.nombre}}</b>
-          <i class="bi bi-chevron-down" (click)="expandCard(i, 2)"></i>
+          <i *ngIf="!oa2.cardExpanded" class="bi bi-chevron-down" (click)="expandCard(i, 2)"></i>
+          <i *ngIf="oa2.cardExpanded" class="bi bi-chevron-up" (click)="expandCard(i, 2)"></i>
           <!--<a href="#/mapas/{{idRed}}"><i class="bi bi-pin-map-fill"></i> Ver en el Mapa</a>-->
         </div>
       </div>
@@ -95,7 +97,8 @@
         </div>
         <div class="cardOaname">
           <b>{{oa3.nombre}}</b>
-          <i class="bi bi-chevron-down" (click)="expandCard(i, 3)"></i>
+          <i *ngIf="!oa3.cardExpanded" class="bi bi-chevron-down" (click)="expandCard(i, 3)"></i>
+          <i *ngIf="oa3.cardExpanded" class="bi bi-chevron-up" (click)="expandCard(i, 3)"></i>
           <!--<a href="#/mapas/{{idRed}}"><i class="bi bi-pin-map-fill"></i> Ver en el Mapa</a>-->
         </div>
       </div>
@@ -112,7 +115,8 @@
         </div>
         <div class="cardOaname">
           <b>{{oa4.nombre}}</b>
-          <i class="bi bi-chevron-down" (click)="expandCard(i, 4)"></i>
+          <i *ngIf="!oa4.cardExpanded" class="bi bi-chevron-down" (click)="expandCard(i, 4)"></i>
+          <i *ngIf="oa4.cardExpanded" class="bi bi-chevron-up" (click)="expandCard(i, 4)"></i>
           <!--<a href="#/mapas/{{idRed}}"><i class="bi bi-pin-map-fill"></i> Ver en el Mapa</a>-->
         </div>
       </div>
@@ -129,7 +133,8 @@
         </div>
         <div class="cardOaname">
           <b>{{oa5.nombre}}</b>
-          <i class="bi bi-chevron-down" (click)="expandCard(i, 5)"></i>
+          <i *ngIf="!oa5.cardExpanded" class="bi bi-chevron-down" (click)="expandCard(i, 5)"></i>
+          <i *ngIf="oa5.cardExpanded" class="bi bi-chevron-up" (click)="expandCard(i, 5)"></i>
           <!--<a href="#/mapas/{{idRed}}"><i class="bi bi-pin-map-fill"></i> Ver en el Mapa</a>-->
         </div>
       </div>
@@ -146,7 +151,8 @@
         </div>
         <div class="cardOaname">
           <b>{{oa6.nombre}}</b>
-          <i class="bi bi-chevron-down" (click)="expandCard(i, 6)"></i>
+          <i *ngIf="!oa6.cardExpanded" class="bi bi-chevron-down" (click)="expandCard(i, 6)"></i>
+          <i *ngIf="oa6.cardExpanded" class="bi bi-chevron-up" (click)="expandCard(i, 6)"></i>
           <!--<a href="#/mapas/{{idRed}}"><i class="bi bi-pin-map-fill"></i> Ver en el Mapa</a>-->
         </div>
       </div>
