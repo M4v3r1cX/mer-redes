@@ -50,7 +50,8 @@
     Cargando...
   </div>
   <div id="sideBarContent" *ngIf="!sideBarContentLoading">
-    <h3 style="padding-left:10px;"><b>Tareas Matemáticas</b></h3>
+    <div class="sideBarContentTitulo" style="vertical-align: center;"><h3 style="padding-left:15px; padding-top: 5px;"><b><img src="assets/flecha_izquierda.svg" height="30px" width="30px" (click)="volverAObjetivos()" style="padding-top: -5px;" /> Tareas Matemáticas</b></h3></div>
+    
     <div class="sideBarHijo" *ngFor="let hijo of hijosOaSeleccionado; let i = index" (click)="mostrarActividades(hijo.id)" >
       <div class="sideBarHijoDescripcion fuenteChica">{{hijo.descripcion}}</div>
       <div class="sideBarHijoBoton"><a><h3><b>></b></h3></a></div>

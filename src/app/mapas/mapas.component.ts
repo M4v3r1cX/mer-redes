@@ -1,6 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import panzoom from "panzoom";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MapasService } from '../services/mapas.service';
 import { ActividadService } from '../services/actividad.service';
 import { OAMapaDTO } from '../models/OAMapaDTO';
@@ -58,7 +58,8 @@ export class MapasComponent implements AfterViewInit {
     public mapaService: MapasService, 
     public dialog: MatDialog, 
     public usersService: UsersService,
-    public actividadService: ActividadService) {
+    public actividadService: ActividadService,
+    private router: Router) {
 
   }
 
@@ -416,5 +417,9 @@ export class MapasComponent implements AfterViewInit {
 			startY: 20,
 		});
 		doc.save('rutas.pdf');
+  }
+
+  volverAObjetivos() {
+    this.router.navigate(["objetivos", this.idRed]);
   }
 }
